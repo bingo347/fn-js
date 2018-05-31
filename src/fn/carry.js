@@ -1,14 +1,22 @@
-function carry(fn, argsCount = 0) {
-    const needRealeseArgs = argsCount || fn.length;
-    const args = [];
-    function carried(...subArgs) {
-        args.push(...subArgs);
-        if(subArgs.length === 0 || args.length >= needRealeseArgs) {
-            return fn(...args);
-        }
-        return carried;
+import arrayAccumulator from '../helpers/arrayAccumulator';
+
+function carryNext(accumulate, release, argsCount) {
+    if(argsCount <= 0) {
+        return release();
     }
-    return carried;
+    return (...args) => {
+        if(args.length === 0) {
+            return release();
+        }
+        accumulate(...args);
+        return carryNext(accumulate, release, argsCount - args.length);
+    };
+}
+
+function carry(fn, argsCount = fn.length) {
+    const accumulate = arrayAccumulator();
+    const release = () => fn(...accumulate.release());
+    return carryNext(accumulate, release, argsCount);
 }
 
 export default carry;
