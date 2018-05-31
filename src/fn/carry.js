@@ -1,4 +1,4 @@
-export default function carry(fn, argsCount = 0) {
+function carry(fn, argsCount = 0) {
     const needRealeseArgs = argsCount || fn.length;
     const args = [];
     function carried(...subArgs) {
@@ -10,3 +10,5 @@ export default function carry(fn, argsCount = 0) {
     }
     return carried;
 }
+
+export default carry;
