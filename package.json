@@ -1,0 +1,23 @@
+{
+  "name": "fn-js",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'TODO: tests'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingo347/fn-js.git"
+  },
+  "keywords": [
+    "functional",
+    "predicate"
+  ],
+  "author": "Dmitriy Belyaev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bingo347/fn-js/issues"
+  },
+  "homepage": "https://github.com/bingo347/fn-js#readme"
+}
