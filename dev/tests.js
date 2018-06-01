@@ -12,7 +12,7 @@ const fsA = [
 
 findTestsInDirectory(path.join(__dirname, '../src')).then(filesForTest => {
     return filesForTest.map(filePath => require(filePath));
-});
+}).catch(console.error);
 
 async function findTestsInDirectory(dirPath) {
     const files = await fsA.readdir(dirPath);
