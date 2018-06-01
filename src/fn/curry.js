@@ -1,22 +1,25 @@
-import arrayAccumulator from '../helpers/arrayAccumulator';
-
-function carryNext(accumulate, release, argsCount) {
+function curryNext(original, prevArgs, argsCount) {
     if(argsCount <= 0) {
-        return release();
+        return original.apply(this, prevArgs);
     }
-    return (...args) => {
-        if(args.length === 0) {
-            return release();
+    function fn(...args) {
+        return curryNext.call(this, original, prevArgs.concat(args), argsCount - args.length);
+    }
+    Object.defineProperties(fn, {
+        length: {
+            configurable: true,
+            value: argsCount
+        },
+        name: {
+            configurable: true,
+            value: original.name
         }
-        accumulate(...args);
-        return carryNext(accumulate, release, argsCount - args.length);
-    };
+    });
+    return fn;
 }
 
-function carry(fn, argsCount = fn.length) {
-    const accumulate = arrayAccumulator();
-    const release = () => fn(...accumulate.release());
-    return carryNext(accumulate, release, argsCount);
+function curry(fn, argsCount = fn.length) {
+    return curryNext(fn, [], argsCount);
 }
 
-export default carry;
+export default curry;
