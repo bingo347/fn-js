@@ -1,4 +1,4 @@
-import carry from './carry';
+import curry from './curry';
 import only from './only';
 
 function mapReduce(mapper, reducer) {
@@ -6,4 +6,4 @@ function mapReduce(mapper, reducer) {
     return (...args) => reducer(...args.map(normalizedMapper));
 }
 
-export default carry(mapReduce);
+export default curry(mapReduce);

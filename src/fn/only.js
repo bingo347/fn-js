@@ -1,7 +1,7 @@
-import carry from './carry';
+import curry from './curry';
 
 function only(argIndex, fn) {
     return (...args) => fn(args[argIndex]);
 }
 
-export default carry(only);
+export default curry(only);

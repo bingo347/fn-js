@@ -1,7 +1,7 @@
-import carry from '../fn/carry';
+import curry from '../fn/curry';
 
 function typeOf(type, value) {
     return typeof value === type;
 }
 
-export default carry(typeOf);
+export default curry(typeOf);

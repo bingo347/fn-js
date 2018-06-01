@@ -1,7 +1,7 @@
-import carry from '../fn/carry';
+import curry from '../fn/curry';
 
 function equal(a, b) {
     return a === b;
 }
 
-export default carry(equal);
+export default curry(equal);
