@@ -1,5 +1,8 @@
+import normalizePredicate from '../fn/normalizePredicate';
+
 function not(predicate) {
-    return (...args) => !predicate(...args);
+    const normalizedPredicate = normalizePredicate(predicate);
+    return (...args) => !normalizedPredicate(...args);
 }
 
 export default not;
