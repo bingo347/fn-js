@@ -1,5 +1,8 @@
+import normalizePredicate from '../fn/normalizePredicate';
+
 function or(...predicates) {
-    return (...args) => predicates.some(predicate => !!predicate(...args));
+    const normalizedPredicates = predicates.map(normalizePredicate);
+    return (...args) => normalizedPredicates.some(predicate => !!predicate(...args));
 }
 
 export default or;
