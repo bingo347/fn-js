@@ -1,6 +1,6 @@
 import isFunction from '../predicates/isFunction';
 
-function advance(...handlers) {
+function handle(...handlers) {
     return value => {
         handlers.forEach(handler => {
             isFunction(handler) && handler(value);
@@ -9,4 +9,4 @@ function advance(...handlers) {
     };
 }
 
-export default advance;
+export default handle;
