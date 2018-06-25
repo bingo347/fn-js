@@ -3,7 +3,6 @@ import curry from './curry';
 
 const PREFIX = 'fn/curry';
 
-
 const testAdd2 = curry((a, b) => a + b);
 const testAdd3 = curry((a, b, c) => a + b + c);
 const testContext = curry(function testName() {
