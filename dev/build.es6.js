@@ -1,6 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import childProcess from 'child_process';
 import {promisify} from 'util';
+
+const SRC_PATH = path.join(__dirname, '../src');
+const DIST_PATH = path.join(__dirname, '../dist');
 
 const fsA = [
     'readdir',
@@ -9,8 +13,13 @@ const fsA = [
     acc[key] = promisify(fs[key]);
     return acc;
 }, {});
+const exec = promisify(childProcess.exec);
 
-findModulesInDirectory(path.join(__dirname, '../src')).then(moduleFiles => {
+exec('rm -rf ' + DIST_PATH).then(() => {
+    return exec('mkdir ' + DIST_PATH);
+}).then(() => {
+    return findModulesInDirectory(SRC_PATH);
+}).then(moduleFiles => {
     console.log(moduleFiles);
 }).catch(console.error);
 
