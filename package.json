@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node -r esm dev/tests.js",
-    "build:es6": "node -r esm dev/build.es6.js"
+    "test": "node -r esm dev/tests",
+    "clear": "rm -rf ./dist",
+    "build:es6": "node -r esm dev/build-es6"
   },
   "repository": {
     "type": "git",
