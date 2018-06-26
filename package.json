@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node -r esm dev/tests",
     "clear": "rm -rf ./dist",
-    "build:es6": "node -r esm dev/build-es6"
+    "build:es6": "node -r esm dev/build-es6",
+    "build:es5": "node -r esm dev/build-es5"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,8 @@
   },
   "homepage": "https://github.com/bingo347/fn-js#readme",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "esm": "^3.0.42"
   }
 }
