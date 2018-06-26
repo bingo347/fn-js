@@ -22,6 +22,7 @@ class IteratorBuilder {
             type: T_MAP,
             fn: mapper
         });
+        return this;
     }
 
     filter(predicate) {
@@ -29,6 +30,7 @@ class IteratorBuilder {
             type: T_FILTER,
             fn: predicate
         });
+        return this;
     }
 
     take(limit) {
@@ -36,6 +38,7 @@ class IteratorBuilder {
             type: T_TAKE,
             fn: (_, {length}) => length === limit
         });
+        return this;
     }
 
     takeWhile(predicate) {
@@ -43,6 +46,7 @@ class IteratorBuilder {
             type: T_TAKE,
             fn: not(predicate)
         });
+        return this;
     }
 }
 
