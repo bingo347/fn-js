@@ -1,8 +1,8 @@
-import path from 'path';
-import findInDirectory from './findInDirectory';
+import findInDirectory from './helpers/findInDirectory';
+import {SRC_PATH} from './helpers/paths';
 
 findInDirectory(
-    path.join(__dirname, '../src'),
+    SRC_PATH,
     filePath => filePath.endsWith('.test.js')
 ).then(filesForTest => {
     return filesForTest.map(filePath => require(filePath));

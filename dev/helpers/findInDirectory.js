@@ -1,7 +1,7 @@
 import path from 'path';
 import fsA from './fsAsync';
-import T from '../src/fn/T';
-import makeIterator from '../src/fn/makeIterator';
+import T from '../../src/fn/T';
+import makeIterator from '../../src/fn/makeIterator';
 
 async function findInDirectory(dirPath, filePathFilter = T) {
     const filesIterator = makeIterator()
