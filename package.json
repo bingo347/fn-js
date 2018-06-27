@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bingo347/fn-js.git"
+    "url": "git+https://github.com/bingo347/func.git"
   },
   "keywords": [
     "functional",
@@ -28,9 +28,9 @@
   "author": "Dmitriy Belyaev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bingo347/fn-js/issues"
+    "url": "https://github.com/bingo347/func/issues"
   },
-  "homepage": "https://github.com/bingo347/fn-js#readme",
+  "homepage": "https://github.com/bingo347/func#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
