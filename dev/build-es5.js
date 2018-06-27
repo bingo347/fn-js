@@ -1,12 +1,10 @@
 import path from 'path';
-import childProcess from 'child_process';
-import {promisify} from 'util';
 import fsA from './helpers/fsAsync';
 import findInDirectory from './helpers/findInDirectory';
 import {SRC_PATH, DIST_PATH} from './helpers/paths';
+import babelize from './helpers/babel';
+import exec from './helpers/exec';
 
-const exec = promisify(childProcess.exec);
-const _babel = path.join(__dirname, '_babel.js');
 const REQUIRE_RE = /require\('(.*)'\);/mg;
 
 findInDirectory(
@@ -18,7 +16,7 @@ findInDirectory(
 
 async function buildModule(srcModule) {
     const distModule = srcModule.replace(SRC_PATH, DIST_PATH);
-    const {stdout} = await exec(`cat ${srcModule} | node ${_babel}`);
+    const code = babelize(srcModule);
     await exec('mkdir -p ' + path.dirname(distModule));
-    await fsA.writeFile(distModule, String(stdout).replace(REQUIRE_RE, 'require(\'$1.js\');'));
+    await fsA.writeFile(distModule, code.replace(REQUIRE_RE, 'require(\'$1.js\');'));
 }

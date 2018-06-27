@@ -1,12 +1,9 @@
 import path from 'path';
-import childProcess from 'child_process';
-import {promisify} from 'util';
 import fsA from './helpers/fsAsync';
 import findInDirectory from './helpers/findInDirectory';
 import {DIST_PATH} from './helpers/paths';
+import babelize from './helpers/babel';
 
-const exec = promisify(childProcess.exec);
-const _babel = path.join(__dirname, '_babel.js');
 const REQUIRE_RE = /require\('(.*)\.mjs'\);/mg;
 const JS_FILE_RE = /\.m?js$/;
 
@@ -54,6 +51,9 @@ async function makeIndex({files, subDirs}, dir) {
     const source = [dirsImports, fileImports, dirsExports, fileExports].filter(code => !!code).join('\r\n\r\n');
     const indexFile = path.join(DIST_PATH, dir.slice(1), 'index.mjs');
     await fsA.writeFile(indexFile, source);
-    const {stdout} = await exec(`cat ${indexFile} | node ${_babel}`);
-    await fsA.writeFile(indexFile.replace('/index.mjs', '/index.js'), String(stdout).replace(REQUIRE_RE, 'require(\'$1.js\');'));
+    const code = await babelize(indexFile);
+    await fsA.writeFile(
+        indexFile.replace('/index.mjs', '/index.js'),
+        code.replace(REQUIRE_RE, 'require(\'$1.js\');')
+    );
 }

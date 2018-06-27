@@ -1,11 +1,9 @@
 import path from 'path';
-import childProcess from 'child_process';
-import {promisify} from 'util';
 import fsA from './helpers/fsAsync';
 import findInDirectory from './helpers/findInDirectory';
 import {SRC_PATH, DIST_PATH} from './helpers/paths';
+import exec from './helpers/exec';
 
-const exec = promisify(childProcess.exec);
 const IMPORT_RE = /import (.*) from '(.*)';/mg;
 
 findInDirectory(
