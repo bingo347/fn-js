@@ -5,7 +5,8 @@ export default [
     'readdir',
     'stat',
     'readFile',
-    'writeFile'
+    'writeFile',
+    'copyFile'
 ].reduce((acc, key) => {
     acc[key] = promisify(fs[key]);
     return acc;
