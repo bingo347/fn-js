@@ -14,7 +14,7 @@
     "build": "run-p build:es5 build:es6",
     "prebuild": "run-s test clear",
     "postbuild": "run-s indexes package",
-    "pub": "npm publish dist",
+    "pub": "npm publish dist --access=public",
     "postversion": "run-s build pub"
   },
   "repository": {
