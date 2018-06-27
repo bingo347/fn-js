@@ -1,15 +1,15 @@
-# fn-js
+# func
 
 A library for functional programming
 
 ## Installation
 
 ```
-npm i -S fn-js
+npm i -S func
 ```
 or
 ```
-yarn add fn-js
+yarn add func
 ```
 
 ## Documentation
