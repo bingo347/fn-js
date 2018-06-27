@@ -16,7 +16,7 @@ findInDirectory(
 
 async function buildModule(srcModule) {
     const distModule = srcModule.replace(SRC_PATH, DIST_PATH);
-    const code = babelize(srcModule);
+    const code = await babelize(srcModule);
     await exec('mkdir -p ' + path.dirname(distModule));
     await fsA.writeFile(distModule, code.replace(REQUIRE_RE, 'require(\'$1.js\');'));
 }

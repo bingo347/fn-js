@@ -13,7 +13,7 @@
     "build:es5": "node -r esm dev/build-es5",
     "build": "run-p build:es5 build:es6",
     "prebuild": "run-s test clear",
-    "postbuild": "run-p indexes package",
+    "postbuild": "run-s indexes package",
     "pub": "npm publish dist",
     "postversion": "run-s build pub"
   },
