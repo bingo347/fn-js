@@ -53,7 +53,7 @@ class IteratorBuilder {
 export default () => new IteratorBuilder();
 
 function makeIterator(pipeline) {
-    return iterable => {
+    return (iterable, ...args) => {
         const accumulator = [];
         const iterator = extractIterator(iterable);
         if(!iterator) {
@@ -69,15 +69,15 @@ function makeIterator(pipeline) {
                 const {type, fn} = pipeline[i];
                 switch(type) {
                 case T_MAP:
-                    value = fn(value);
+                    value = fn(value, ...args);
                     break;
                 case T_FILTER:
-                    if(!fn(value)) {
+                    if(!fn(value, ...args)) {
                         continue mainLoop;
                     }
                     break;
                 case T_TAKE:
-                    if(fn(value, accumulator)) {
+                    if(fn(value, accumulator, ...args)) {
                         return accumulator;
                     }
                     break;
