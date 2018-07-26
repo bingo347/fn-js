@@ -1,9 +1,15 @@
 **curry (fn, argsCount)**
 
-Takes two arguments - a function and the number of arguments expected by it.
+Can take two arguments - a function and the number of arguments expected by it.
 
 Returns a curried function.
 
-If no `argsCount` have been provided it invokes `fn` and returns its result.
+It either invokes `fn` and returns its result or returns a function which takes the rest of the arguments of `fn`.
 
-With `argsCount` it will return a function which takes the rest of `fn` arguments.
+
+    function add(num1, num2) {
+        return num1 + num2;
+    }
+
+    curry(add)(1, 2) // 3
+    curry(add)(1)(2) // 3
