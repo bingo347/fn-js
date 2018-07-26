@@ -1,4 +1,4 @@
-**greater**
+**greater(a, b)**
 
 Takes two arguments.  
 Returns true if the first argument is greater than the second. Otherwise returns false.

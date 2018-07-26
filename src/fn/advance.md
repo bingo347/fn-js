@@ -1,4 +1,4 @@
-**advance**
+**advance(value)**
 
 Takes one argument and returns it.
 

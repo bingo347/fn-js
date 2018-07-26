@@ -1,4 +1,4 @@
-**or**
+**or(...predicates)**
 
 Returns true if at least one argument is true. Otherwise returns false.
 

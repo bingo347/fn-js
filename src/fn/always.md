@@ -1,4 +1,4 @@
-**always**
+**always(value)**
 
 Returns a function which will always return the received argument.
 

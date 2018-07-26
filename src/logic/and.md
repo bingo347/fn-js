@@ -1,4 +1,4 @@
-**and**
+**and(...predicates)**
 
 Returns true if all arguments are true. Otherwise returns false.
 
