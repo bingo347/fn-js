@@ -1,7 +1,4 @@
-const reducer = (value, mapper) => mapper(value);
+import chain from './chain';
+import _move from '../fn/_move';
 
-function chainMapper(...mappers) {
-    return value => mappers.reduce(reducer, value);
-}
-
-export default chainMapper;
+export default _move(chain, 'mappers/chainMapper', 'mappers/chain');

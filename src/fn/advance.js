@@ -1,5 +1,4 @@
-function advance(value) {
-    return value;
-}
+import advance from '../advance';
+import _move from './_move';
 
-export default advance;
+export default _move(advance, 'fn/advance', 'advance');

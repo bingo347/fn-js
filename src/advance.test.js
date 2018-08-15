@@ -1,7 +1,7 @@
 import assert from 'assert';
 import advance from './advance';
 
-const PREFIX = 'fn/advance';
+const PREFIX = 'advance';
 
 const testObj = {};
 

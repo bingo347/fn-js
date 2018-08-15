@@ -1,4 +1,4 @@
-import curry from '../../fn/curry';
+import curry from '../../curry';
 import eq from './eq';
 import gt from './gt';
 import or from '../or';

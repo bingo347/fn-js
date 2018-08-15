@@ -1,7 +1,7 @@
 import assert from 'assert';
-import makeIterator from './makeIterator';
+import makeIterator from './iterator';
 
-const PREFIX = 'fn/makeIterator';
+const PREFIX = 'make/iterator';
 
 const testMap = makeIterator().map(el => el * 2).release();
 const testFilter = makeIterator().filter(el => el % 2).release();

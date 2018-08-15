@@ -1,11 +1,4 @@
-import always from './always';
-import isFunction from '../predicates/isFunction';
+import normalizePredicate from '../normalizePredicate';
+import _move from './_move';
 
-function normalizePredicate(predicate) {
-    return (isFunction(predicate)
-        ? predicate
-        : always(!!predicate)
-    );
-}
-
-export default normalizePredicate;
+export default _move(normalizePredicate, 'fn/normalizePredicate', 'normalizePredicate');

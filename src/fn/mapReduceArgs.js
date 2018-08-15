@@ -1,9 +1,4 @@
-import curry from './curry';
-import only from './only';
+import mapReduceArgs from '../mapReduceArgs';
+import _move from './_move';
 
-function mapReduceArgs(mapper, reducer) {
-    const normalizedMapper = only(0, mapper);
-    return (...args) => reducer(...args.map(normalizedMapper));
-}
-
-export default curry(mapReduceArgs);
+export default _move(mapReduceArgs, 'fn/mapReduceArgs', 'mapReduceArgs');

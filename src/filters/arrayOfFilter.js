@@ -1,6 +1,6 @@
 import typeFilter from './typeFilter';
 import isString from '../predicates/isString';
-import normalizePredicate from '../fn/normalizePredicate';
+import normalizePredicate from '../normalizePredicate';
 
 function arrayOfFilter(elementsPredicate) {
     const normalizedPredicate = (isString(elementsPredicate)

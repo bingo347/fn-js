@@ -1,7 +1,7 @@
 import assert from 'assert';
 import always from './always';
 
-const PREFIX = 'fn/always';
+const PREFIX = 'always';
 
 const testObj = {};
 const testFN = always(testObj);

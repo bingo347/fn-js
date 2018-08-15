@@ -1,12 +1,4 @@
-import isFunction from '../predicates/isFunction';
+import handle from '../handle';
+import _move from './_move';
 
-function handle(...handlers) {
-    return value => {
-        handlers.forEach(handler => {
-            isFunction(handler) && handler(value);
-        });
-        return value;
-    };
-}
-
-export default handle;
+export default _move(handle, 'fn/handle', 'handle');

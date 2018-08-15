@@ -1,5 +1,5 @@
-import mapReduceArgs from '../../fn/mapReduceArgs';
-import curry from '../../fn/curry';
+import mapReduceArgs from '../../mapReduceArgs';
+import curry from '../../curry';
 import less from '../less';
 
 const lt = mapReduceArgs(Number, less);

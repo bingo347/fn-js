@@ -1,4 +1,4 @@
-import normalizePredicate from '../fn/normalizePredicate';
+import normalizePredicate from '../normalizePredicate';
 
 function not(predicate) {
     const normalizedPredicate = normalizePredicate(predicate);

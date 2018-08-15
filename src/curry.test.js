@@ -1,7 +1,7 @@
 import assert from 'assert';
 import curry from './curry';
 
-const PREFIX = 'fn/curry';
+const PREFIX = 'curry';
 
 const testAdd2 = curry((a, b) => a + b);
 const testAdd3 = curry((a, b, c) => a + b + c);

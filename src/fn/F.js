@@ -1,3 +1,4 @@
-import always from './always';
+import F from '../F';
+import _move from './_move';
 
-export default always(false);
+export default _move(F, 'fn/F', 'F');

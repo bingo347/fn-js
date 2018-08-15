@@ -1,7 +1,4 @@
-import curry from './curry';
+import only from '../only';
+import _move from './_move';
 
-function only(argIndex, fn) {
-    return (...args) => fn(args[argIndex]);
-}
-
-export default curry(only);
+export default _move(only, 'fn/only', 'only');
