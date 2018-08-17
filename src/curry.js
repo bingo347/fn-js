@@ -18,6 +18,12 @@ function curryNext(original, prevArgs, argsCount) {
     return fn;
 }
 
+/**
+ * @name curry
+ * @param {function} fn
+ * @param {?number} argsCount
+ * @returns {function}
+ */
 function curry(fn, argsCount = fn.length) {
     return curryNext(fn, [], argsCount);
 }

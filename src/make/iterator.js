@@ -13,10 +13,17 @@ class IteratorBuilder {
         });
     }
 
+    /**
+     * @returns {(iterable: {[x: number]: *, length: number}|{[Symbol.iterator]: () => Iterator}, ...args: *[]) => *[]}
+     */
     release() {
         return makeIterator(this[PIPELINE]);
     }
 
+    /**
+     * @param {(value: *, ...args: *[]) => *} mapper
+     * @returns {this}
+     */
     map(mapper) {
         this[PIPELINE].push({
             type: T_MAP,
@@ -25,6 +32,10 @@ class IteratorBuilder {
         return this;
     }
 
+    /**
+     * @param {(value: *, ...args: *[]) => boolean} predicate
+     * @returns {this}
+     */
     filter(predicate) {
         this[PIPELINE].push({
             type: T_FILTER,
@@ -33,6 +44,10 @@ class IteratorBuilder {
         return this;
     }
 
+    /**
+     * @param {number} limit
+     * @returns {this}
+     */
     take(limit) {
         this[PIPELINE].push({
             type: T_TAKE,
@@ -41,6 +56,10 @@ class IteratorBuilder {
         return this;
     }
 
+    /**
+     * @param {(value: *, accumulator: *[], ...args: *[]) => boolean} predicate
+     * @returns {this}
+     */
     takeWhile(predicate) {
         this[PIPELINE].push({
             type: T_TAKE,
