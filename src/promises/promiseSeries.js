@@ -1,7 +1,4 @@
-const reducer = (promise, mapper) => promise.then(mapper);
+import series from './series';
+import _move from '../fn/_move';
 
-function promiseSeries(...mappers) {
-    return value => mappers.reduce(reducer, Promise.resolve(value));
-}
-
-export default promiseSeries;
+export default _move(series, 'promises/promiseSeries', 'promises/series');
