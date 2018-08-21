@@ -1,7 +1,7 @@
 import makeEncapsulator from '../make/encapsulator';
 
 const reducerEncapsulator = makeEncapsulator().applyTo(
-    (promise, mapper, ...encapsulatedArgs) => promise.then(value => mapper(value, ...encapsulatedArgs)),
+    (promise, mapper, ...encapsulatedArgs) => promise.then(value => mapper(value, ...encapsulatedArgs.slice(2))),
     true
 );
 
