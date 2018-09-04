@@ -1,8 +1,3 @@
-/**
- * @name always
- * @param {*} value
- * @returns {() => *}
- */
 function always(value) {
     return () => value;
 }
