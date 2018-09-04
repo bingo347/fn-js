@@ -1,8 +1,6 @@
-import {readFile} from 'fs';
-import {promisify} from 'util';
 import {transform} from 'babel-core';
+import fsA from './fsAsync';
 
-const readFileAsync = promisify(readFile);
 const babelOptions = {
     presets: [
         ['env', {
@@ -20,7 +18,7 @@ const babelOptions = {
 };
 
 async function babelize(file) {
-    const source = await readFileAsync(file, 'utf-8');
+    const source = await fsA.readFile(file, 'utf-8');
     const {code} = transform(source, babelOptions);
     return code;
 }
