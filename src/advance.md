@@ -1,4 +1,4 @@
-## advance
+## advance (value: any)
 
 Takes one argument and returns it.
 

@@ -1,4 +1,4 @@
-## curry (fn, argsCount)
+## curry (fn: (...args: any[]) => any, argsCount?: number)
 
 Can take two arguments - a function and the number of arguments expected by it.
 
