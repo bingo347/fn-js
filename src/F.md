@@ -1,4 +1,4 @@
-**F**
+## F
 
 Function which always returns false. Ignores passed in arguments.
 

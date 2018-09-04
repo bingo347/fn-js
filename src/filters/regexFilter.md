@@ -1,4 +1,4 @@
-**regexFilter(regex)**
+## regexFilter(regex)
 
 Takes one argument - a regular expression.
 

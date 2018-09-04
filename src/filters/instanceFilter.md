@@ -1,4 +1,4 @@
-**instanceFilter(ClassConstructor)**
+## instanceFilter(ClassConstructor)
 
 Takes a function as an argument.
 

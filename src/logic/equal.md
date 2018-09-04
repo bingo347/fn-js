@@ -1,4 +1,4 @@
-**equal(a, b)**
+## equal(a, b)
 
 Takes two arguments.  
 Returns true if the arguments are equal. Otherwise returns false.

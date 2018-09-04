@@ -1,4 +1,4 @@
-**less(a, b)**
+## less(a, b)
 
 Takes two arguments.  
 Returns true if the first argument is less than the second. Otherwise returns false.

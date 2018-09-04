@@ -1,4 +1,4 @@
-**typeFilter(type)**
+## typeFilter(type)
 
 Takes a string as an argument. 
 

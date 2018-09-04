@@ -1,4 +1,4 @@
-**only(argIndex, fn)**
+## only(argIndex, fn)
 
 Takes two arguments - an index and a function.
 
