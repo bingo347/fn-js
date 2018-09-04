@@ -6,7 +6,8 @@ export default [
     'stat',
     'readFile',
     'writeFile',
-    'copyFile'
+    'copyFile',
+    'access'
 ].reduce((acc, key) => {
     acc[key] = promisify(fs[key]);
     return acc;
