@@ -2,6 +2,6 @@
 
 Takes a string as an argument. 
 
-If tested value is the same type as the argument - returns `true`. Otherwise returns `false`
+Returns `true` if tested value is the same type as the argument. Otherwise returns `false`
 
     typeFilter('boolean')(true) // true
