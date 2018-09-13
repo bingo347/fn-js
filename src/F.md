@@ -1,6 +1,19 @@
-## F
+# F
 
-Function which always returns false. Ignores passed in arguments.
+It always returns false
 
-    F() // false
-    F(100) // false
+```javascript
+import F from '@bingo347/fn/F';
+```
+
+signature:
+
+```typescript
+declare function F(): boolean;
+```
+
+example:
+
+```javascript
+F(); // false
+```
