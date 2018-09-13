@@ -34,8 +34,10 @@
   },
   "homepage": "https://github.com/bingo347/fn-js#readme",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
+    "@babel/generator": "^7.0.0",
+    "@babel/parser": "^7.0.0",
+    "@babel/traverse": "^7.0.0",
+    "@babel/types": "^7.0.0",
     "esm": "^3.0.42",
     "npm-run-all": "^4.1.3"
   }
