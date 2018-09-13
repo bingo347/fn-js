@@ -20,6 +20,6 @@ example:
 const func = (a) => {
     return a;
 }
-only(1, func)(1, 2) // 2
-only(3, func)(1, 2) // undefined
+only(1, func)(1, 2); // 2
+only(3, func)(1, 2); // undefined
 ```
