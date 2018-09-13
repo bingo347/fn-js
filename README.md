@@ -100,7 +100,7 @@ module.exports = {
 
 ## Documentation
 
-In progress...
+[See on the github](https://github.com/bingo347/fn-js/blob/master/docs.md)
 
 ## License
 
