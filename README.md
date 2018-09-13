@@ -53,6 +53,13 @@ domReady(iframe.contentDocument).then(() => {
 });
 ```
 
+## Two module systems support
+
+All library functions are provided in two variants:
+
+- ES6 modules with .mjs extension, for use with module bundler (webpack) or use in node.js with [--experimental-modules flag](https://nodejs.org/dist/latest/docs/api/esm.html) or with [esm](https://www.npmjs.com/package/esm)
+- commonJS modules with .js extension, for use in node.js without any helpers
+
 ## ES5 support
 
 All library functions are provided in ES6 (ES2015) compatible code.\
