@@ -1,8 +1,25 @@
-## only(argIndex, fn)
+# only
+*curried*
 
-Takes two arguments - an index and a function.
+Finds and returns the argument of received function at given index
 
-Finds and returns the argument of `fn` at the `argIndex` index.
+```javascript
+import only from '@bingo347/fn/only';
+```
+signature:
 
-    only(1, add)(1, 2) // 2
-    only(3, add)(1, 2) // undefined
+```typescript
+declare function only(argIndex: number, fn: (arg: any) => any): (...args: any[]) => any;
+declare function only(argIndex: number): (fn: (arg: any) => any) => (...args: any[]) => any;
+
+```
+
+example:
+
+```javascript
+const func = (a) => {
+    return a;
+}
+only(1, func)(1, 2); // 2
+only(3, func)(1, 2); // undefined
+```
