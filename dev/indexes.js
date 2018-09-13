@@ -6,7 +6,6 @@ import babelize from './helpers/babel';
 import advance from '../src/advance';
 import F from '../src/F';
 
-const REQUIRE_RE = /require\('(.*)\.mjs'\);/mg;
 const JS_FILE_RE = /\.m?js$/;
 
 findInDirectory(DIST_PATH).then(files => {
@@ -53,10 +52,7 @@ async function makeIndex({files, subDirs}, dir) {
     const indexFile = path.join(DIST_PATH, dir.slice(1), 'index.mjs');
     await fsA.writeFile(indexFile, source);
     const code = await babelize(indexFile);
-    await fsA.writeFile(
-        indexFile.replace('/index.mjs', '/index.js'),
-        code.replace(REQUIRE_RE, 'require(\'$1.js\');')
-    );
+    await fsA.writeFile(indexFile.replace('/index.mjs', '/index.js'), code);
 }
 
 async function makeIndexDTS({files, subDirs}, dir) {

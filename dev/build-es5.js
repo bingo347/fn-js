@@ -5,8 +5,6 @@ import {SRC_PATH, DIST_PATH} from './helpers/paths';
 import babelize from './helpers/babel';
 import exec from './helpers/exec';
 
-const REQUIRE_RE = /require\('(.*)'\);/mg;
-
 findInDirectory(
     SRC_PATH,
     filePath => filePath.endsWith('.js') && !filePath.endsWith('.test.js')
@@ -18,5 +16,5 @@ async function buildModule(srcModule) {
     const distModule = srcModule.replace(SRC_PATH, DIST_PATH);
     const code = await babelize(srcModule);
     await exec('mkdir -p ' + path.dirname(distModule));
-    await fsA.writeFile(distModule, code.replace(REQUIRE_RE, 'require(\'$1.js\');'));
+    await fsA.writeFile(distModule, code);
 }
