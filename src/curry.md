@@ -1,8 +1,8 @@
 # curry
 
-Wrap given function to a curried variant
-The second argument - number of curried arguments in given function
-It's optional, and default is function.length
+Wrap given function to a curried variant.
+The second argument - number of curried arguments in given function.
+It's optional, and default is function.length.
 
 ```javascript
 import curry from '@bingo347/fn/curry';

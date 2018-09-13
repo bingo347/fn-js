@@ -1,6 +1,19 @@
-## T
+# T
 
-Function which always returns true. Ignores passed in arguments.
+It always returns true
 
-    T(false) // true
-    T() // true
+```javascript
+import T from '@bingo347/fn/T';
+```
+
+signature:
+
+```typescript
+declare function T(): boolean;
+```
+
+example:
+
+```javascript
+T(); // true
+```
