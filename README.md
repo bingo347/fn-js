@@ -53,6 +53,44 @@ domReady(iframe.contentDocument).then(() => {
 });
 ```
 
+## ES5 support
+
+All library functions are provided in ES6 (ES2015) compatible code.\
+It don't transpiled, but you can use webpack with babel for transpile it for old browsers
+
+```javascript
+// webpack.config.js
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.m?js$/,
+                include: modulePath => {
+                    if(modulePath.includes('node_modules/@bingo347/fn')) {
+                        // transpile this library
+                        return true;
+                    }
+                    if(modulePath.includes('node_modules')) {
+                        // don't transpile other libraries
+                        return false;
+                    }
+                    // transpile your code
+                    return true;
+                },
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [['env', {modules: false}]]
+                    }
+                }]
+            },
+            // your other webpack module.rules
+        ]
+    },
+    // your other webpack options
+}
+```
+
 ## Documentation
 
 In progress...
