@@ -4,6 +4,7 @@ import findInDirectory from './helpers/findInDirectory';
 import {DIST_PATH} from './helpers/paths';
 import babelize from './helpers/babel';
 import advance from '../src/advance';
+import T from '../src/T';
 import F from '../src/F';
 
 const JS_FILE_RE = /\.m?js$/;
@@ -63,7 +64,7 @@ async function makeIndexDTS({files, subDirs}, dir) {
         };
     });
     const filePreImports = await Promise.all(files.map(async(file) => {
-        const isExists = await fsA.access(path.join(DIST_PATH, dir.slice(1), file + '.d.ts')).catch(F);
+        const isExists = await fsA.access(path.join(DIST_PATH, dir.slice(1), file + '.d.ts')).then(T).catch(F);
         return isExists ? {
             imp: `import ${file} from './${file}';`,
             exp: file
