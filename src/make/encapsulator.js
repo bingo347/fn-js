@@ -8,11 +8,6 @@ class Applier {
         });
     }
 
-    /**
-     * @param {((...encapsulatedArgs: *[], ...args: []*) => *)|((...args: *[], ...encapsulatedArgs: []*) => *)} fn
-     * @param {?boolean} onRight
-     * @returns {(...args: *[]) => *}
-     */
     applyTo(fn, onRight = false) {
         return makeEncapsulator(this[ENCAPSULATED], fn, onRight);
     }
@@ -25,29 +20,16 @@ class Encapsulator {
         });
     }
 
-    /**
-     * @param  {...*} encapsulatedArgs
-     * @returns {(...args: *[]) => *}
-     */
     encapsulate(...encapsulatedArgs) {
         return makeEncapsulator(encapsulatedArgs, ...this[ENCAPSULATED]);
     }
 }
 
 class EncapsulatorApplier {
-    /**
-     * @param {((...encapsulatedArgs: *[], ...args: []*) => *)|((...args: *[], ...encapsulatedArgs: []*) => *)} fn
-     * @param {?boolean} onRight
-     * @returns {{encapsulate: (...encapsulatedArgs: *[]) => (...args: *[]) => *}}
-     */
     applyTo(fn, onRight = false) {
         return new Encapsulator(fn, onRight);
     }
 
-    /**
-     * @param  {...*} encapsulatedArgs
-     * @returns {{applyTo: (fn: ((...encapsulatedArgs: *[], ...args: []*) => *)|((...args: *[], ...encapsulatedArgs: []*) => *), onRight: boolean) => (...args: *[]) => *}}
-     */
     encapsulate(...encapsulatedArgs) {
         return new Applier(encapsulatedArgs);
     }
