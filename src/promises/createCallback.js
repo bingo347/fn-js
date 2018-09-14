@@ -1,9 +1,5 @@
 import createPromise from './createPromise';
 
-/**
- * @name createCallback
- * @returns {{promise: Promise<*[]>|Promise, callback: (err: Error, ...args: *) => void}}
- */
 function createCallback() {
     const {promise, resolve, reject} = createPromise();
     function callback(err, ...args) {

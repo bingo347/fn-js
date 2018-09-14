@@ -5,11 +5,6 @@ const reducerEncapsulator = makeEncapsulator().applyTo(
     true
 );
 
-/**
- * @name series
- * @param  {...(value: *) => Promise} mappers
- * @returns {(value: *, ...encapsulatedArgs: *[]) => Promise}
- */
 function series(...mappers) {
     return (value, ...encapsulatedArgs) => {
         const reducer = reducerEncapsulator.encapsulate(...encapsulatedArgs);
