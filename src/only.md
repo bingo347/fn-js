@@ -1,6 +1,6 @@
 # only
 
-: _curried_
+:curried
 
 Finds and returns the argument of received function at given index
 
