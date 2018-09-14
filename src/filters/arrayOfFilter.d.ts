@@ -1,6 +1,6 @@
-import {ValuePredicatable, ValuePredicate} from '../_global';
+import {ValuePredicatable} from '../_global';
 
-declare function arrayOfFilter<V>(elementsPredicate: ValuePredicatable<V>): ValuePredicate<V[]>;
-declare function arrayOfFilter(elementsPredicate: string): ValuePredicate<any[]>;
+declare function arrayOfFilter<V>(elementsPredicate: ValuePredicatable<V>): (arr: V[]) => boolean;
+declare function arrayOfFilter(elementsPredicate: string): (arr: any[]) => boolean;
 
 export default arrayOfFilter;

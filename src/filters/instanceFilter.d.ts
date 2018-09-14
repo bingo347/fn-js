@@ -1,5 +1,3 @@
-import {ValuePredicate} from '../_global';
-
-declare function instanceFilter(ClassConstructor: FunctionConstructor): ValuePredicate<any>;
+declare function instanceFilter(ClassConstructor: FunctionConstructor): (value: any) => boolean;
 
 export default instanceFilter;
