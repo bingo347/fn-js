@@ -1,3 +1,3 @@
-import {ValuePredicatable, ValuePredicate} from "./_global";
+import {Predicatable, Predicate} from "./_global";
 
-declare function normalizePredicate<V>(predicate: ValuePredicatable<V>): ValuePredicate<V>
+declare function normalizePredicate<V>(predicate: Predicatable<V>): Predicate<V>

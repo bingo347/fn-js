@@ -1,5 +1,5 @@
-import {ValueMapper} from "../_global";
+import {Mapper} from "../_global";
 
-declare function chain<V, R>(...mappers: ValueMapper<V, R>[]): ValueMapper<V, R>;
+declare function chain<V, R>(...mappers: Mapper<V, R>[]): Mapper<V, R>;
 
 export default chain;

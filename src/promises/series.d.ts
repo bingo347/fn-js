@@ -1,5 +1,5 @@
-import {ValueMapper} from '../_global';
+import {Mapper} from '../_global';
 
-declare function series<V, R>(...mappers: ValueMapper<V, Promise<R>>[]): ValueMapper<V, Promise<R>>;
+declare function series<V, R>(...mappers: Mapper<V, Promise<R>>[]): Mapper<V, Promise<R>>;
 
 export default series;
