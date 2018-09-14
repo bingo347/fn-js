@@ -11,7 +11,7 @@ import chain from '@bingo347/fn/mappers/chain';
 signature:
 
 ```typescript
-declare function chain<V, R>(...mappers: ValueMapper<V, R>[]): ValueMapper<V, R>;
+declare function chain<V = any, R = any>(...mappers: Mapper<V, R>[]): Mapper<V, R>;
 ```
 
 example:

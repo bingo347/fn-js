@@ -1,4 +1,3 @@
-declare function advance<T>(value: T): T;
-declare function advance(value: any): any;
+declare function advance<T = any>(value: T): T;
 
 export default advance;

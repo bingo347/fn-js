@@ -1,7 +1,7 @@
 # curry
 
-Wrap given function to a curried variant.
-The second argument - number of curried arguments in given function.
+Wrap given function to a curried variant.\
+The second argument - number of curried arguments in given function.\
 It's optional, and default is function.length.
 
 ```javascript
@@ -11,7 +11,7 @@ import curry from '@bingo347/fn/curry';
 signature:
 
 ```typescript
-declare function curry(fn: (...args: any[]) => any, argsCount?: number): () => any;
+declare function curry(fn: Function, argsCount?: number): Function;
 ```
 
 example:

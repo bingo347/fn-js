@@ -1,3 +1,5 @@
-declare function regexFilter(regex: RegExp): (str: string) => boolean;
+import {Predicate} from '../_global';
+
+declare function regexFilter(regex: RegExp): Predicate<string>;
 
 export default regexFilter;

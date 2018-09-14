@@ -1,3 +1,3 @@
-declare function curry(fn: (...args: any[]) => any, argsCount?: number): () => any;
+declare function curry(fn: Function, argsCount?: number): Function;
 
 export default curry;

@@ -9,8 +9,7 @@ import advance from '@bingo347/fn/advance';
 signature:
 
 ```typescript
-declare function advance<T>(value: T): T;
-declare function advance(value: any): any;
+declare function advance<T = any>(value: T): T;
 ```
 
 example:

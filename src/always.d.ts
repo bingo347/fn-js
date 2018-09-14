@@ -1,4 +1,3 @@
-declare function always<T>(value: T): () => T;
-declare function always(value: any): () => any;
+declare function always<T = any>(value: T): () => T;
 
 export default always;

@@ -9,7 +9,7 @@ import handle from '@bingo347/fn/handle';
 signature:
 
 ```typescript
-declare function handle<T>(...handlers: ((value: T) => void)[]): (value: T) => T;
+declare function handle<T = any>(...handlers: ((value: T) => void)[]): (value: T) => T;
 ```
 
 example:

@@ -1,7 +1,6 @@
 # normalizePredicate
 
-If the predicate is a function, normalizePredicate will return it.   
-If predicate is not a function, normalizePredicate will return `true` if predicate is truthy or `false` if it is falsy.
+If transform [Predicatable](#general-concepts) to [Predicate](#general-concepts).
 
 ```javascript
 import normalizePredicate from '@bingo347/fn/normalizePredicate';
@@ -10,7 +9,7 @@ import normalizePredicate from '@bingo347/fn/normalizePredicate';
 signature:
 
 ```typescript
-declare function normalizePredicate<V>(predicate: ValuePredicatable<V>): ValuePredicate<V>
+declare function normalizePredicate<V = any>(predicate: Predicatable<V>): Predicate<V>;
 ```
 
 example:

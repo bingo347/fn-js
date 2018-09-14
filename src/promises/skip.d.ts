@@ -1,7 +1,9 @@
-interface Skip<V, R> {
-    (cb: (value: V, ...args: any[]) => R): (value: V | Skip<any, any>, ...args: any[]) => R;
+import {Mapper} from '../_global';
+
+interface Skip<V = any, R = any> {
+    (cb: Mapper<V, R>): Mapper<V | Skip, R>
 }
 
-declare function skip<V, R>(cb: (value: V, ...args: any[]) => R): (value: V | Skip<any, any>, ...args: any[]) => R;
+declare function skip<V = any, R = any>(cb: Mapper<V, R>): Mapper<V | Skip, R>;
 
 export default skip;

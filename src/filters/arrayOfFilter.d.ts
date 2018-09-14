@@ -1,6 +1,6 @@
 import {Predicate} from '../_global';
 
-declare function arrayOfFilter<V>(elementsPredicate: Predicate<V>): (arr: V[]) => boolean;
-declare function arrayOfFilter(elementsPredicate: string): (arr: any[]) => boolean;
+declare function arrayOfFilter<V = any>(elementsPredicate: Predicate<V>): Predicate<V[]>;
+declare function arrayOfFilter(elementsPredicate: string): Predicate<any[]>;
 
 export default arrayOfFilter;

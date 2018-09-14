@@ -9,8 +9,7 @@ import always from '@bingo347/fn/always';
 signature:
 
 ```typescript
-declare function always<T>(value: T): () => T;
-declare function always(value: any): () => any;
+declare function always<T = any>(value: T): () => T;
 ```
 
 example:
