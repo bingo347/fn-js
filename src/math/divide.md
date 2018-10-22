@@ -1,5 +1,6 @@
-# divide  
-*curried*
+# divide
+
+:curried
 
 Returns the quotient of two received arguments
 

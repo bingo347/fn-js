@@ -1,5 +1,6 @@
-# add  
-*curried*
+# add
+
+:curried
 
 Returns the result of adding two received arguments
 

@@ -1,5 +1,6 @@
-# multiply  
-*curried*
+# multiply
+
+:curried
 
 Returns the result of multiplication of two received arguments
 

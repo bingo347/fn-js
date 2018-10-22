@@ -1,5 +1,6 @@
-# modulate  
-*curried*
+# modulate
+
+:curried
 
 Returns the division remainder
 

@@ -1,5 +1,7 @@
 # moduleFor
 
+:curried
+
 Returns the division remainder when the second argument is divided by the first argument
 
 ```javascript

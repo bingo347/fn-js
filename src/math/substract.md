@@ -1,5 +1,6 @@
-# substract  
-*curried*
+# substract
+
+:curried
 
 Return the result of subtraction of two received arguments
 

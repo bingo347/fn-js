@@ -1,5 +1,7 @@
 # substractFrom
 
+:curried
+
 Return the result of subtraction when the first argument is being subtracted from the second argument
 
 ```javascript

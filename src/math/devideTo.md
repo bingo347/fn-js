@@ -1,5 +1,7 @@
 # devideTo
 
+:curried
+
 Returns the quotient of two arguments when the second argument is divided by the first argument
 
 ```javascript
