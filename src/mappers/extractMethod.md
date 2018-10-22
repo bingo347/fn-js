@@ -6,7 +6,6 @@ Takes in a method and an object.\
 Will return the given method.\
 If this method is a property of the object it can be executed.
 
-
 ```javascript
 import extractMethod from '@bingo347/fn/mappers/extractMethod';
 ```
