@@ -1,6 +1,7 @@
 # predicates/isDate
 
-Returns true if the given value is a Date. Otherwise returns false.
+Returns true if the given value is a Date.  
+Otherwise returns false.
 
 ```javascript
 import isDate from '@bingo347/fn/predicates/isDate';

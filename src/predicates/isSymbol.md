@@ -1,6 +1,7 @@
 # predicates/isSymbol
 
-Returns true if the given value is a Symbol. Otherwise returns false.
+Returns true if the given value is a Symbol.  
+Otherwise returns false.
 
 ```javascript
 import isSymbol from '@bingo347/fn/predicates/isSymbol';

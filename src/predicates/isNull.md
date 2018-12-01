@@ -1,6 +1,7 @@
 # predicates/isNull
 
-Returns true if the given value is null. Otherwise returns false.
+Returns true if the given value is null.  
+Otherwise returns false.
 
 ```javascript
 import isNull from '@bingo347/fn/predicates/isNull';

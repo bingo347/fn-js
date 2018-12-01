@@ -1,6 +1,7 @@
 # predicates/isFunction
 
-Returns true if the given value is a function. Otherwise returns false.
+Returns true if the given value is a function.  
+Otherwise returns false.
 
 ```javascript
 import isFunction from '@bingo347/fn/predicates/isFunction';

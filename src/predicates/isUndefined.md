@@ -1,6 +1,7 @@
 # predicates/isUndefined
 
-Returns true if the given value is undefined. Otherwise returns false.
+Returns true if the given value is undefined.   
+Otherwise returns false.
 
 ```javascript
 import isUndefined from '@bingo347/fn/predicates/isUndefined';

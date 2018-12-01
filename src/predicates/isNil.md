@@ -1,6 +1,7 @@
 # predicates/isNil
 
-Returns true if the given value is null or undefined. Otherwise returns false.
+Returns true if the given value is null or undefined.  
+Otherwise returns false.
 
 ```javascript
 import isNil from '@bingo347/fn/predicates/isNil';

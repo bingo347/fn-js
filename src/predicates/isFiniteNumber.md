@@ -1,6 +1,7 @@
 # predicates/isFiniteNumber
 
-Returns true if the given value is a finite number. Otherwise returns false.
+Returns true if the given value is a finite number.  
+Otherwise returns false.
 
 ```javascript
 import isFiniteNumber from '@bingo347/fn/predicates/isFiniteNumber';

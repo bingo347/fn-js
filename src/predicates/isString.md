@@ -1,6 +1,7 @@
 # predicates/isString
 
-Returns true if the given value is a string. Otherwise returns false.
+Returns true if the given value is a string.  
+Otherwise returns false.
 
 ```javascript
 import isString from '@bingo347/fn/predicates/isString';

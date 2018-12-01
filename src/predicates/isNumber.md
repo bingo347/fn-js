@@ -1,6 +1,7 @@
 # predicates/isNumber
 
-Returns true if the given value is a number. Otherwise returns false.
+Returns true if the given value is a number.  
+Otherwise returns false.
 
 ```javascript
 import isNumber from '@bingo347/fn/predicates/isNumber';

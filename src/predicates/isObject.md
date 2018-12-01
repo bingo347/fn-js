@@ -1,6 +1,7 @@
 # predicates/isObject
 
-Returns true if the given value is an object. Otherwise returns false.
+Returns true if the given value is an object.  
+Otherwise returns false.
 
 ```javascript
 import isObject from '@bingo347/fn/predicates/isObject';

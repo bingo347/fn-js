@@ -1,6 +1,7 @@
 # predicates/isBoolean
 
-Returns true if the given value is a boolean. Otherwise returns false.
+Returns true if the given value is a boolean.  
+Otherwise returns false.
 
 ```javascript
 import isBoolean from '@bingo347/fn/predicates/isBoolean';

@@ -1,6 +1,7 @@
 # predicates/isInteger
 
-Returns true if the given value is an integer. Otherwise returns false.
+Returns true if the given value is an integer.  
+Otherwise returns false.
 
 ```javascript
 import isInteger from '@bingo347/fn/predicates/isInteger';
