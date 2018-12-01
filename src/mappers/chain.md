@@ -24,5 +24,5 @@ const multiply = num => {
     return num * num;
 };
 const addAndMultiply = chain(add, multiply);
-addAndMultiply(32); // 4096 becouse add(32) is 64, multiply(64) is 4096
+addAndMultiply(32); // 4096 because add(32) is 64, multiply(64) is 4096
 ```
