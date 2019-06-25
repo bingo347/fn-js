@@ -13,6 +13,9 @@ export default placeholder;
 
 import test from 'ava';
 /** @test */
-test('placeholder is Placeholder', t => {
-    t.assert(isPlaceholder(placeholder));
-});
+(function() {
+    if(module.parent.id !== '.') { return; }
+    test('placeholder is Placeholder', t => {
+        t.assert(isPlaceholder(placeholder));
+    });
+})();

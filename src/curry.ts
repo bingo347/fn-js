@@ -162,9 +162,9 @@ function curryNext<T1, T2, T3, T4, T5, R>(
 }
 
 import test from 'ava';
-import { anyTypeAnnotation } from '@babel/types';
 /** @test */
 (function() {
+    if(module.parent.id !== '.') { return; }
     const testAdd2 = curry((a: number, b: number) => a + b);
     const testAdd3 = curry((a: number, b: number, c: number) => a + b + c);
     const testPlaceholder = curry<any, Placeholder, any, [any, any, any]>((a: any, b: any, c: any) => [a, b, c]);
