@@ -83,15 +83,15 @@ interface CurriedFunction5<T1, T2, T3, T4, T5, R> {
  * const add = curry((num1, num2) => {
  *    return num1 + num2;
  * });
- * add(1, 2); // 3
- * add(1)(2); // 3
+ * add(1, 2); // => 3
+ * add(1)(2); // => 3
  * const add5 = add(5);
- * add5(3); // 8
- * add5(4); // 9
+ * add5(3); // => 8
+ * add5(4); // => 9
  *
- * curry((a, b, c) => {}).length; // 3
- * curry((a, b, c = 0) => {}).length; // 2
- * curry((a, b, c = 0) => {}, 3).length; // 3
+ * curry((a, b, c) => {}).length; // => 3
+ * curry((a, b, c = 0) => {}).length; // => 2
+ * curry((a, b, c = 0) => {}, 3).length; // => 3
  *
  * const log = curry((...args) => console.log(args), 3);
  * log(1)(2)(3); // logged: [1, 2, 3]
