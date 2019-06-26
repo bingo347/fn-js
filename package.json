@@ -6,8 +6,9 @@
   "module": "index.mjs",
   "types": "index.d.ts",
   "scripts": {
-    "pretest": "tslint -p .",
     "test": "ava",
+    "lint": "tslint -p .",
+    "compile": "tsc -p .",
     "clear": "rm -rf ./dist",
     "indexes": "node dev/esm indexes",
     "package": "node dev/esm package",

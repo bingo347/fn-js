@@ -19,3 +19,6 @@ async function buildModule(srcModule) {
     await exec('mkdir -p ' + path.dirname(distModule));
     await fsA.writeFile(distModule, source.replace(IMPORT_RE, 'import $1 from \'$2.mjs\';'));
 }
+
+// Object.defineProperty(exports, "__esModule", { value: true });
+// Object.defineProperty((module.exports = Object.assign(exports.default, exports)), "__esModule", { value: true });
