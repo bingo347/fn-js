@@ -161,8 +161,8 @@ function curryNext<T1, T2, T3, T4, T5, R>(
     return fn as CurryNextResult<T1, T2, T3, T4, T5, R>;
 }
 
-import test from 'ava';
 /** @test */
+import test from 'ava';
 (function() {
     if(module.parent.id !== '.') { return; }
     const testAdd2 = curry((a: number, b: number) => a + b);

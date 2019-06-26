@@ -11,8 +11,8 @@ const placeholder: Placeholder = new Placeholder();
 
 export default placeholder;
 
-import test from 'ava';
 /** @test */
+import test from 'ava';
 (function() {
     if(module.parent.id !== '.') { return; }
     test('placeholder is Placeholder', t => {
