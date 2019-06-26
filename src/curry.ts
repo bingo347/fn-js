@@ -161,7 +161,7 @@ function curryNext<T1, T2, T3, T4, T5, R>(
     return fn as CurryNextResult<T1, T2, T3, T4, T5, R>;
 }
 
-/** @test */
+// <test>
 import test from 'ava';
 (function() {
     if(module.parent.id !== '.') { return; }
@@ -218,3 +218,4 @@ import test from 'ava';
         t.is(ctx, testContext(0)(0).call(ctx, 0));
     });
 })();
+// </test>

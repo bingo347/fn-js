@@ -11,7 +11,7 @@ const placeholder: Placeholder = new Placeholder();
 
 export default placeholder;
 
-/** @test */
+// <test>
 import test from 'ava';
 (function() {
     if(module.parent.id !== '.') { return; }
@@ -19,3 +19,4 @@ import test from 'ava';
         t.assert(isPlaceholder(placeholder));
     });
 })();
+// </test>
