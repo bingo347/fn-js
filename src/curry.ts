@@ -1,16 +1,16 @@
 import {Placeholder, isPlaceholder} from './placeholder';
 
-interface CurriedFunction1<T1, R> {
+export interface CurriedFunction1<T1, R> {
     (): CurriedFunction1<T1, R>;
     (arg: T1): R;
 }
-interface CurriedFunction2<T1, T2, R> {
+export interface CurriedFunction2<T1, T2, R> {
     (): CurriedFunction2<T1, T2, R>;
     (arg: T1): CurriedFunction1<T2, R>;
     (...args: [T1, T2]): R;
     (...args: [Placeholder, T2]): CurriedFunction1<T1, R>;
 }
-interface CurriedFunction3<T1, T2, T3, R> {
+export interface CurriedFunction3<T1, T2, T3, R> {
     (): CurriedFunction3<T1, T2, T3, R>;
     (arg: T1): CurriedFunction2<T2, T3, R>;
     (...args: [T1, T2]): CurriedFunction1<T3, R>;
@@ -20,7 +20,7 @@ interface CurriedFunction3<T1, T2, T3, R> {
     (...args: [T1, Placeholder, T3]): CurriedFunction1<T2, R>;
     (...args: [Placeholder, Placeholder, T3]): CurriedFunction2<T1, T2, R>;
 }
-interface CurriedFunction4<T1, T2, T3, T4, R> {
+export interface CurriedFunction4<T1, T2, T3, T4, R> {
     (): CurriedFunction4<T1, T2, T3, T4, R>;
     (arg: T1): CurriedFunction3<T2, T3, T4, R>;
     (...args: [T1, T2]): CurriedFunction2<T3, T4, R>;
@@ -38,7 +38,7 @@ interface CurriedFunction4<T1, T2, T3, T4, R> {
     (...args: [Placeholder, T2, Placeholder, T4]): CurriedFunction2<T1, T3, R>;
     (...args: [Placeholder, Placeholder, T3, T4]): CurriedFunction2<T1, T2, R>;
 }
-interface CurriedFunction5<T1, T2, T3, T4, T5, R> {
+export interface CurriedFunction5<T1, T2, T3, T4, T5, R> {
     (): CurriedFunction5<T1, T2, T3, T4, T5, R>;
     (arg: T1): CurriedFunction4<T2, T3, T4, T5, R>;
     (...args: [T1, T2]): CurriedFunction3<T3, T4, T5, R>;
@@ -104,7 +104,7 @@ function curry<T1, T2, R>(fn: (...args: [T1, T2]) => R, arity?: number): Curried
 function curry<T1, T2, T3, R>(fn: (...args: [T1, T2, T3]) => R, arity?: number): CurriedFunction3<T1, T2, T3, R>;
 function curry<T1, T2, T3, T4, R>(fn: (...args: [T1, T2, T3, T4]) => R, arity?: number): CurriedFunction4<T1, T2, T3, T4, R>;
 function curry<T1, T2, T3, T4, T5, R>(fn: (...args: [T1, T2, T3, T4, T5]) => R, arity?: number): CurriedFunction5<T1, T2, T3, T4, T5, R>;
-function curry(fn, arity = fn.length) {
+function curry<R>(fn: (...args: any[]) => R, arity = fn.length) {
     return curryNext(fn, [], arity);
 }
 
