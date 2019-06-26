@@ -26,4 +26,4 @@ function only<R>(argIndex: number, fn: FA<any, R>): (...args: any[]) => R {
     return (...args) => fn(args[argIndex]);
 }
 
-export default curry<number, FA<any, any>, any>(only);
+export default curry<number, FA<any, any>, typeof only>(only);
