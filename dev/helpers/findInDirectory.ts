@@ -1,4 +1,4 @@
-import {promises as fs, PathLike} from 'fs';
+import {promises as fs} from 'fs';
 import * as path from 'path';
 
 // TODO: use fn/T and fn/_typedef::Predicate
@@ -12,7 +12,7 @@ async function findInDirectory(
 ): Promise<string[]> {
     const dirents = await fs.readdir(dirPath, {withFileTypes: true});
     const files: string[] = [];
-    const subDirs: Promise<string[]>[] = [];
+    const subDirs: Array<Promise<string[]>> = [];
     for(const dirent of dirents) {
         const filePath = path.join(dirPath, dirent.name);
         if(dirent.isDirectory()) {
