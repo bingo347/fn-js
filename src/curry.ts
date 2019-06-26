@@ -130,7 +130,7 @@ function curryNext<T1, T2, T3, T4, T5, R>(
     if(argsCount <= 0) {
         return original.apply(this, prevArgs);
     }
-    const fn: CurryNextResult<T1, T2, T3, T4, T5, R> = function fn(...args) {
+    function fn(...args: [T1?, T2?, T3?, T4?, T5?]): R {
         const nextArgs = prevArgs.slice();
         let skip = 0;
         nextArgs.forEach((arg, i) => {
@@ -158,7 +158,7 @@ function curryNext<T1, T2, T3, T4, T5, R>(
         // ignore, it fix IE
         // becouse IE can not redefine length property for function
     }
-    return fn;
+    return fn as CurryNextResult<T1, T2, T3, T4, T5, R>;
 }
 
 import test from 'ava';
