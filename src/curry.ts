@@ -1,11 +1,16 @@
 import {Placeholder, isPlaceholder} from './placeholder';
 
-type Args1<Fn> = Fn extends (...args: [infer A0]) => any ? [A0] : never;
-type Args2<Fn> = Fn extends (...args: [infer A0, infer A1]) => any ? [A0, A1] : never;
-type Args3<Fn> = Fn extends (...args: [infer A0, infer A1, infer A2]) => any ? [A0, A1, A2] : never;
-type Args4<Fn> = Fn extends (...args: [infer A0, infer A1, infer A2, infer A3]) => any ? [A0, A1, A2, A3] : never;
-type Args5<Fn> = Fn extends (...args: [infer A0, infer A1, infer A2, infer A3, infer A4]) => any ? [A0, A1, A2, A3, A4] : never;
-type Curried<Fn extends (...args: any[]) => any, Arity>
+type Args1<Fn> = Fn extends (...args: [infer A0]) => any
+    ? [A0] : never;
+type Args2<Fn> = Fn extends (...args: [infer A0, infer A1]) => any
+    ? [A0, A1] : never;
+type Args3<Fn> = Fn extends (...args: [infer A0, infer A1, infer A2]) => any
+    ? [A0, A1, A2] : never;
+type Args4<Fn> = Fn extends (...args: [infer A0, infer A1, infer A2, infer A3]) => any
+    ? [A0, A1, A2, A3] : never;
+type Args5<Fn> = Fn extends (...args: [infer A0, infer A1, infer A2, infer A3, infer A4]) => any
+    ? [A0, A1, A2, A3, A4] : never;
+type Curried<Fn extends (...args: any[]) => any, Arity extends number>
     = Arity extends 0
         ? () => ReturnType<Fn>
     : Arity extends 1

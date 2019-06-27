@@ -12,7 +12,14 @@ type Args<I, A>
     : any[];
 type OnlyResult<A, R, I extends number> = (...args: Args<I, A>) => R;
 
-function only<A, R, I extends number>(argIndex: I, fn: (arg: A) => R): OnlyResult<A, R, I> {
+function only<A, R, I extends number>(argIndex: I): (fn: (arg: A) => R) => OnlyResult<A, R, I>;
+function only<A, R, I extends number>(argIndex: I, fn: (arg: A) => R): OnlyResult<A, R, I>;
+function only<A, R, I extends number>(argIndex: I, fn?: (arg: A) => R) {
+    if(typeof fn === 'undefined') {
+        return function(fn: (arg: A) => R): OnlyResult<A, R, I> {
+            return only(argIndex, fn);
+        };
+    }
     return function() {
         return fn(arguments[argIndex]);
     };
