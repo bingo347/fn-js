@@ -104,33 +104,17 @@ function curry<T1, T2, R>(fn: (...args: [T1, T2]) => R, arity?: number): Curried
 function curry<T1, T2, T3, R>(fn: (...args: [T1, T2, T3]) => R, arity?: number): CurriedFunction3<T1, T2, T3, R>;
 function curry<T1, T2, T3, T4, R>(fn: (...args: [T1, T2, T3, T4]) => R, arity?: number): CurriedFunction4<T1, T2, T3, T4, R>;
 function curry<T1, T2, T3, T4, T5, R>(fn: (...args: [T1, T2, T3, T4, T5]) => R, arity?: number): CurriedFunction5<T1, T2, T3, T4, T5, R>;
-function curry<R>(fn: (...args: any[]) => R, arity = fn.length) {
+function curry<R>(fn: (...args: any[]) => R, arity: number = fn.length) {
     return curryNext(fn, [], arity);
 }
 
 export default curry;
 
-type CurryNextResult<T1, T2, T3, T4, T5, R>
-    = CurriedFunction1<T1, R>
-    | CurriedFunction2<T1, T2, R>
-    | CurriedFunction3<T1, T2, T3, R>
-    | CurriedFunction4<T1, T2, T3, T4, R>
-    | CurriedFunction5<T1, T2, T3, T4, T5, R>;
-
-function curryNext<T1, T2, T3, T4, T5, R>(
-    original
-        : ((arg: T1) => R)
-        | ((...args: [T1, T2]) => R)
-        | ((...args: [T1, T2, T3]) => R)
-        | ((...args: [T1, T2, T3, T4]) => R)
-        | ((...args: [T1, T2, T3, T4, T5]) => R),
-    prevArgs: [T1?, T2?, T3?, T4?, T5?],
-    argsCount: number
-): CurryNextResult<T1, T2, T3, T4, T5, R> {
+function curryNext<R>(original: (...args: any[]) => R, prevArgs: any[], argsCount: number) {
     if(argsCount <= 0) {
         return original.apply(this, prevArgs);
     }
-    function fn(...args: [T1?, T2?, T3?, T4?, T5?]): R {
+    function fn(...args: any[]): R {
         const nextArgs = prevArgs.slice();
         let skip = 0;
         nextArgs.forEach((arg, i) => {
@@ -158,7 +142,7 @@ function curryNext<T1, T2, T3, T4, T5, R>(
         // ignore, it fix IE
         // becouse IE can not redefine length property for function
     }
-    return fn as CurryNextResult<T1, T2, T3, T4, T5, R>;
+    return fn;
 }
 
 // <test>
