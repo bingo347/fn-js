@@ -10,21 +10,30 @@ type T6<A> = [any, any, any, any, any, any, A, ...any[]];
 type T7<A> = [any, any, any, any, any, any, any, A, ...any[]];
 type T8<A> = [any, any, any, any, any, any, any, any, A, ...any[]];
 type T9<A> = [any, any, any, any, any, any, any, any, any, A, ...any[]];
+type Args<I, A>
+    = I extends 0 ? T0<A>
+    : I extends 1 ? T1<A>
+    : I extends 2 ? T2<A>
+    : I extends 3 ? T3<A>
+    : I extends 4 ? T4<A>
+    : I extends 5 ? T5<A>
+    : I extends 6 ? T6<A>
+    : I extends 7 ? T7<A>
+    : I extends 8 ? T8<A>
+    : I extends 9 ? T9<A>
+    : any[];
 
-function only<A, R>(argIndex: 0, fn: (arg: A) => R): (...args: T0<A>) => R;
-function only<A, R>(argIndex: 1, fn: (arg: A) => R): (...args: T1<A>) => R;
-function only<A, R>(argIndex: 2, fn: (arg: A) => R): (...args: T2<A>) => R;
-function only<A, R>(argIndex: 3, fn: (arg: A) => R): (...args: T3<A>) => R;
-function only<A, R>(argIndex: 4, fn: (arg: A) => R): (...args: T4<A>) => R;
-function only<A, R>(argIndex: 5, fn: (arg: A) => R): (...args: T5<A>) => R;
-function only<A, R>(argIndex: 6, fn: (arg: A) => R): (...args: T6<A>) => R;
-function only<A, R>(argIndex: 7, fn: (arg: A) => R): (...args: T7<A>) => R;
-function only<A, R>(argIndex: 8, fn: (arg: A) => R): (...args: T8<A>) => R;
-function only<A, R>(argIndex: 9, fn: (arg: A) => R): (...args: T9<A>) => R;
-function only<R>(argIndex: number, fn: (arg: any) => R): (...args: any[]) => R {
+function only<A, R, I extends number>(argIndex: I, fn: (arg: A) => R): (...args: Args<I, A>) => R {
     return function() {
         return fn(arguments[argIndex]);
     };
 }
 
-export default curry<number, <A, R>(arg: A) => R, typeof only>(only);
+const a = only(7, (x: string) => x);
+
+/*
+const $only = curry<number, <A, R>(arg: A) => R, ReturnType<typeof only>>(only);
+export default $only;
+
+const x = $only(0, ((x: string) => x) as <A, R>(arg: A) => R);
+*/
