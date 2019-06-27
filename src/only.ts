@@ -1,3 +1,5 @@
+import isUndefined from './predicates/isUndefined';
+
 type Args<I, A>
     = I extends 0 ? [A, ...any[]]
     : I extends 1 ? [any, A, ...any[]]
@@ -29,7 +31,7 @@ export type OnlyResult<A, R, I extends number> = (...args: Args<I, A>) => R;
 function only<A, R, I extends number>(argIndex: I): (fn: (arg: A) => R) => OnlyResult<A, R, I>;
 function only<A, R, I extends number>(argIndex: I, fn: (arg: A) => R): OnlyResult<A, R, I>;
 function only<A, R, I extends number>(argIndex: I, fn?: (arg: A) => R) {
-    if(typeof fn === 'undefined') {
+    if(isUndefined(fn)) {
         return function(fn: (arg: A) => R): OnlyResult<A, R, I> {
             return only(argIndex, fn);
         };

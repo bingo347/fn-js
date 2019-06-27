@@ -13,7 +13,7 @@ import curry from '../curry';
  * equal(100, '100') // => false
  */
 function equal<T1, T2>(a: T1, b: T2): boolean {
-    return a === b;
+    return (a as any) === (b as any);
 }
 
 export default curry(equal);
