@@ -1,77 +1,44 @@
 import {Placeholder, isPlaceholder} from './placeholder';
 
-export interface CurriedFunction1<T1, R> {
-    (): CurriedFunction1<T1, R>;
-    (arg: T1): R;
-}
-export interface CurriedFunction2<T1, T2, R> {
-    (): CurriedFunction2<T1, T2, R>;
-    (arg: T1): CurriedFunction1<T2, R>;
-    (...args: [T1, T2]): R;
-    (...args: [Placeholder, T2]): CurriedFunction1<T1, R>;
-}
-export interface CurriedFunction3<T1, T2, T3, R> {
-    (): CurriedFunction3<T1, T2, T3, R>;
-    (arg: T1): CurriedFunction2<T2, T3, R>;
-    (...args: [T1, T2]): CurriedFunction1<T3, R>;
-    (...args: [T1, T2, T3]): R;
-    (...args: [Placeholder, T2]): CurriedFunction2<T1, T3, R>;
-    (...args: [Placeholder, T2, T3]): CurriedFunction1<T1, R>;
-    (...args: [T1, Placeholder, T3]): CurriedFunction1<T2, R>;
-    (...args: [Placeholder, Placeholder, T3]): CurriedFunction2<T1, T2, R>;
-}
-export interface CurriedFunction4<T1, T2, T3, T4, R> {
-    (): CurriedFunction4<T1, T2, T3, T4, R>;
-    (arg: T1): CurriedFunction3<T2, T3, T4, R>;
-    (...args: [T1, T2]): CurriedFunction2<T3, T4, R>;
-    (...args: [T1, T2, T3]): CurriedFunction1<T4, R>;
-    (...args: [T1, T2, T3, T4]): R;
-    (...args: [Placeholder, T2]): CurriedFunction3<T1, T3, T4, R>;
-    (...args: [Placeholder, T2, T3]): CurriedFunction2<T1, T4, R>;
-    (...args: [T1, Placeholder, T3]): CurriedFunction2<T2, T4, R>;
-    (...args: [T1, T2, Placeholder, T4]): CurriedFunction1<T3, R>;
-    (...args: [T1, Placeholder, T3, T4]): CurriedFunction1<T2, R>;
-    (...args: [Placeholder, T2, T3, T4]): CurriedFunction1<T1, R>;
-    (...args: [Placeholder, Placeholder, T3]): CurriedFunction3<T1, T2, T4, R>;
-    (...args: [Placeholder, Placeholder, Placeholder, T4]): CurriedFunction3<T1, T2, T3, R>;
-    (...args: [T1, Placeholder, Placeholder, T4]): CurriedFunction2<T2, T3, R>;
-    (...args: [Placeholder, T2, Placeholder, T4]): CurriedFunction2<T1, T3, R>;
-    (...args: [Placeholder, Placeholder, T3, T4]): CurriedFunction2<T1, T2, R>;
-}
-export interface CurriedFunction5<T1, T2, T3, T4, T5, R> {
-    (): CurriedFunction5<T1, T2, T3, T4, T5, R>;
-    (arg: T1): CurriedFunction4<T2, T3, T4, T5, R>;
-    (...args: [T1, T2]): CurriedFunction3<T3, T4, T5, R>;
-    (...args: [T1, T2, T3]): CurriedFunction2<T4, T5, R>;
-    (...args: [T1, T2, T3, T4]): CurriedFunction1<T5, R>;
-    (...args: [T1, T2, T3, T4, T5]): R;
-    (...args: [Placeholder, T2]): CurriedFunction4<T1, T3, T4, T5, R>;
-    (...args: [T1, Placeholder, T3]): CurriedFunction3<T2, T4, T5, R>;
-    (...args: [Placeholder, T2, T3]): CurriedFunction3<T1, T4, T5, R>;
-    (...args: [T1, T2, Placeholder, T4]): CurriedFunction2<T3, T5, R>;
-    (...args: [T1, Placeholder, T3, T4]): CurriedFunction2<T2, T5, R>;
-    (...args: [Placeholder, T2, T3, T4]): CurriedFunction2<T1, T5, R>;
-    (...args: [T1, T2, T3, Placeholder, T5]): CurriedFunction1<T4, R>;
-    (...args: [T1, T2, Placeholder, T4, T5]): CurriedFunction1<T3, R>;
-    (...args: [T1, Placeholder, T3, T4, T5]): CurriedFunction1<T2, R>;
-    (...args: [Placeholder, T2, T3, T4, T5]): CurriedFunction1<T1, R>;
-    (...args: [Placeholder, Placeholder, T3]): CurriedFunction4<T1, T2, T4, T5, R>;
-    (...args: [T1, Placeholder, Placeholder, T4]): CurriedFunction3<T2, T3, T5, R>;
-    (...args: [Placeholder, T2, Placeholder, T4]): CurriedFunction3<T1, T3, T5, R>;
-    (...args: [Placeholder, Placeholder, T3, T4]): CurriedFunction3<T1, T2, T5, R>;
-    (...args: [T1, T2, Placeholder, Placeholder, T5]): CurriedFunction2<T3, T4, R>;
-    (...args: [T1, Placeholder, T3, Placeholder, T5]): CurriedFunction2<T2, T4, R>;
-    (...args: [T1, Placeholder, Placeholder, T4, T5]): CurriedFunction2<T2, T3, R>;
-    (...args: [Placeholder, T2, T3, Placeholder, T5]): CurriedFunction2<T1, T4, R>;
-    (...args: [Placeholder, T2, Placeholder, T4, T5]): CurriedFunction2<T1, T3, R>;
-    (...args: [Placeholder, Placeholder, T3, T4, T5]): CurriedFunction2<T1, T2, R>;
-    (...args: [Placeholder, Placeholder, Placeholder, T4]): CurriedFunction4<T1, T2, T3, T5, R>;
-    (...args: [T1, Placeholder, Placeholder, Placeholder, T5]): CurriedFunction3<T2, T3, T4, R>;
-    (...args: [Placeholder, T2, Placeholder, Placeholder, T5]): CurriedFunction3<T1, T3, T4, R>;
-    (...args: [Placeholder, Placeholder, T3, Placeholder, T5]): CurriedFunction3<T1, T2, T4, R>;
-    (...args: [Placeholder, Placeholder, Placeholder, T4, T5]): CurriedFunction3<T1, T2, T3, R>;
-    (...args: [Placeholder, Placeholder, Placeholder, Placeholder, T5]): CurriedFunction4<T1, T2, T3, T4, R>;
-}
+type Args1<Fn> = Fn extends (...args: [infer A0]) => any ? [A0] : never;
+type Args2<Fn> = Fn extends (...args: [infer A0, infer A1]) => any ? [A0, A1] : never;
+type Args3<Fn> = Fn extends (...args: [infer A0, infer A1, infer A2]) => any ? [A0, A1, A2] : never;
+type Args4<Fn> = Fn extends (...args: [infer A0, infer A1, infer A2, infer A3]) => any ? [A0, A1, A2, A3] : never;
+type Args5<Fn> = Fn extends (...args: [infer A0, infer A1, infer A2, infer A3, infer A4]) => any ? [A0, A1, A2, A3, A4] : never;
+type Curried<Fn extends (...args: any[]) => any, Arity>
+    = Arity extends 0
+        ? () => ReturnType<Fn>
+    : Arity extends 1
+        ? (...args: Args1<Fn>) => ReturnType<Fn>
+    : Arity extends 2
+        ? Fn extends (...args: [infer A0]) => any
+            ? (...args: [A0]) => Curried<Fn, 1>
+            : (...args: Args2<Fn>) => ReturnType<Fn>
+    : Arity extends 3
+        ? Fn extends (...args: [infer A0]) => any
+            ? (...args: [A0]) => Curried<Fn, 2>
+        : Fn extends (...args: [infer A0, infer A1]) => any
+            ? (...args: [A0, A1]) => Curried<Fn, 1>
+            : (...args: Args3<Fn>) => ReturnType<Fn>
+    : Arity extends 4
+        ? Fn extends (...args: [infer A0]) => any
+            ? (...args: [A0]) => Curried<Fn, 3>
+        : Fn extends (...args: [infer A0, infer A1]) => any
+            ? (...args: [A0, A1]) => Curried<Fn, 2>
+        : Fn extends (...args: [infer A0, infer A1, infer A2]) => any
+            ? (...args: [A0, A1, A2]) => Curried<Fn, 1>
+            : (...args: Args4<Fn>) => ReturnType<Fn>
+    : Arity extends 5
+        ? Fn extends (...args: [infer A0]) => any
+            ? (...args: [A0]) => Curried<Fn, 4>
+        : Fn extends (...args: [infer A0, infer A1]) => any
+            ? (...args: [A0, A1]) => Curried<Fn, 3>
+        : Fn extends (...args: [infer A0, infer A1, infer A2]) => any
+            ? (...args: [A0, A1, A2]) => Curried<Fn, 2>
+        : Fn extends (...args: [infer A0, infer A1, infer A2, infer A3]) => any
+            ? (...args: [A0, A1, A2, A3]) => Curried<Fn, 1>
+            : (...args: Args5<Fn>) => ReturnType<Fn>
+    : (...args: any[]) => any;
 
 /**
  * Wrap given function to a curried variant.
@@ -99,22 +66,28 @@ export interface CurriedFunction5<T1, T2, T3, T4, T5, R> {
  * log(1)(2, 3, 4); // logged: [1, 2, 3, 4]
  * log(1, 2); // not logged becose original function is not called
  */
-function curry<T1, R>(fn: (arg: T1) => R, arity?: number): CurriedFunction1<T1, R>;
-function curry<T1, T2, R>(fn: (...args: [T1, T2]) => R, arity?: number): CurriedFunction2<T1, T2, R>;
-function curry<T1, T2, T3, R>(fn: (...args: [T1, T2, T3]) => R, arity?: number): CurriedFunction3<T1, T2, T3, R>;
-function curry<T1, T2, T3, T4, R>(fn: (...args: [T1, T2, T3, T4]) => R, arity?: number): CurriedFunction4<T1, T2, T3, T4, R>;
-function curry<T1, T2, T3, T4, T5, R>(fn: (...args: [T1, T2, T3, T4, T5]) => R, arity?: number): CurriedFunction5<T1, T2, T3, T4, T5, R>;
-function curry<R>(fn: (...args: any[]) => R, arity: number = fn.length) {
-    return curryNext(fn, [], arity);
+function curry<Arity extends number, Fn extends (...args: any[]) => any>(
+    fn: Fn,
+    arity: Arity = fn.length as Arity
+): Curried<Fn, Arity> {
+    return curryNext<Arity, Fn>(fn, [], arity) as Curried<Fn, Arity>;
 }
 
 export default curry;
 
-function curryNext<R>(original: (...args: any[]) => R, prevArgs: any[], argsCount: number) {
+type Args<Fn, Arity>
+    = Arity extends 0 ? []
+    : any[];
+
+function curryNext<Arity extends number, Fn extends (...args: any[]) => any>(
+    original: Fn,
+    prevArgs: any[],
+    argsCount: Arity
+): Curried<Fn, Arity> | ReturnType<Fn> {
     if(argsCount <= 0) {
         return original.apply(this, prevArgs);
     }
-    function fn(...args: any[]): R {
+    function fn(...args: any[]): Curried<Fn, Arity> | ReturnType<Fn> {
         const nextArgs = prevArgs.slice();
         let skip = 0;
         nextArgs.forEach((arg, i) => {
@@ -142,7 +115,7 @@ function curryNext<R>(original: (...args: any[]) => R, prevArgs: any[], argsCoun
         // ignore, it fix IE
         // becouse IE can not redefine length property for function
     }
-    return fn;
+    return fn as Curried<Fn, Arity>;
 }
 
 // <test>
@@ -151,6 +124,7 @@ import test from 'ava';
     if(module.parent.id !== '.') { return; }
     const testAdd2 = curry((a: number, b: number) => a + b);
     const testAdd3 = curry((a: number, b: number, c: number) => a + b + c);
+    // @ts-ignore
     const testPlaceholder = curry<any, Placeholder, any, [any, any, any]>((a: any, b: any, c: any) => [a, b, c]);
     const testContext = curry(function testName() {
         return this;
