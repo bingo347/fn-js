@@ -13,8 +13,18 @@ type Args<I, A>
 export type OnlyResult<A, R, I extends number> = (...args: Args<I, A>) => R;
 
 /**
- * wrap function
- * @param argIndex index
+ * wrap function with one argument to function with many arguments
+ * pass selected argument to given function
+ * @param argIndex selected argument index
+ * @param fn function for wrap
+ * @returns wraped function
+ *
+ * @example
+ * const func = (a) => {
+ *    return a;
+ * }
+ * only(1, func)(1, 2); // => 2
+ * only(3, func)(1, 2); // => undefined
  */
 function only<A, R, I extends number>(argIndex: I): (fn: (arg: A) => R) => OnlyResult<A, R, I>;
 function only<A, R, I extends number>(argIndex: I, fn: (arg: A) => R): OnlyResult<A, R, I>;
