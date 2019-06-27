@@ -1,22 +1,18 @@
-export class Placeholder {}
-
-export function isPlaceholder(v: unknown): v is Placeholder {
-    return v instanceof Placeholder;
-}
+interface Placeholder {ph: 1; }
 
 /**
  * It's placeholder for skip arguments in curried functions
  */
-const placeholder: Placeholder = new Placeholder();
+const _: Placeholder = {ph: 1};
 
-export default placeholder;
+export default _;
 
 // <test>
 import test from 'ava';
 (function() {
     if(module.parent.id !== '.') { return; }
     test('placeholder is Placeholder', t => {
-        t.assert(isPlaceholder(placeholder));
+        t.assert(_ && _.ph === 1);
     });
 })();
 // </test>

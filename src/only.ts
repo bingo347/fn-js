@@ -12,6 +12,10 @@ type Args<I, A>
     : any[];
 type OnlyResult<A, R, I extends number> = (...args: Args<I, A>) => R;
 
+/**
+ * wrap function
+ * @param argIndex index
+ */
 function only<A, R, I extends number>(argIndex: I): (fn: (arg: A) => R) => OnlyResult<A, R, I>;
 function only<A, R, I extends number>(argIndex: I, fn: (arg: A) => R): OnlyResult<A, R, I>;
 function only<A, R, I extends number>(argIndex: I, fn?: (arg: A) => R) {
