@@ -1,60 +1,8 @@
 import __ from './placeholder';
-
-// I express my deep gratitude to Pierre-Antoine Mills
-// for the article https://www.freecodecamp.org/news/how-to-master-advanced-typescript-patterns-f747e99744ab/
-// without this article I would never have achieved a type guarantee from curry
-
 type Placeholder = typeof __;
-type Head<T extends any[]>
-    = T extends [any, ...any[]]
-    ? T[0] : never;
-type Tail<T extends any[]>
-    = ((...t: T) => any) extends ((_: any, ...tail: infer TT) => any)
-    ? TT : [];
-type HasTail<T extends any[]>
-    = T extends ([] | [any])
-    ? false : true;
-type Last<T extends any[]> = {
-    0: Last<Tail<T>>;
-    1: Head<T>;
-}[HasTail<T> extends true ? 0 : 1];
-type Length<T extends any[]> = T['length'];
-type Prepend<E, T extends any[]>
-    = ((head: E, ...args: T) => any) extends ((...args: infer U) => any)
-    ? U : T;
-type Drop<N extends number, T extends any[], I extends any[] = []> = {
-    0: Drop<N, Tail<T>, Prepend<any, I>>;
-    1: T;
-}[Length<I> extends N ? 1 : 0];
-type Cast<X, Y> = X extends Y ? X : Y;
-type Pos<I extends any[]> =  Length<I>;
-type Next<I extends any[]> = Prepend<any, I>;
-type Reverse<T extends any[], R extends any[] = [], I extends any[] = []> = {
-    0: Reverse<T, Prepend<T[Pos<I>], R>, Next<I>>;
-    1: R;
-}[Pos<I> extends Length<T> ? 1 : 0];
-type Concat<T1 extends any[], T2 extends any[]>
-    = Reverse<Reverse<T1> extends infer R ? Cast<R, any[]> : never, T2>;
-type Append<E, T extends any[]> = Concat<T, [E]>;
-type GapOf<T1 extends any[], T2 extends any[], TN extends any[], I extends any[]>
-    = T1[Pos<I>] extends Placeholder
-    ? Append<T2[Pos<I>], TN> : TN;
-type GapsOf<T1 extends any[], T2 extends any[], TN extends any[] = [], I extends any[] = []> = {
-    0: GapsOf<T1, T2, GapOf<T1, T2, TN, I> extends infer G ? Cast<G, any[]> : never, Next<I>>;
-    1: Concat<TN, Drop<Pos<I>, T2> extends infer D ? Cast<D, any[]> : never>;
-}[Pos<I> extends Length<T1> ? 1 : 0];
-type PartialGaps<T extends any[]> = {
-    [K in keyof T]?: T[K] | Placeholder
-};
-type CleanedGaps<T extends any[]> = {
-    [K in keyof T]: NonNullable<T[K]>
-};
-type Gaps<T extends any[]> = CleanedGaps<PartialGaps<T>>;
-type Curry<F extends ((...args: any) => any)>
-    = <T extends any[]>(...args: Cast<Cast<T, Gaps<Parameters<F>>>, any[]>) =>
-        GapsOf<T, Parameters<F>> extends [any, ...any[]]
-            ? Curry<(...args: GapsOf<T, Parameters<F>> extends infer G ? Cast<G, any[]> : never) => ReturnType<F>>
-            : ReturnType<F>;
+
+// normal types is crash TS compiler with high order functions
+// need replace types for dist from curry.d.ts
 
 /**
  * Wrap given function to a curried variant.
@@ -82,8 +30,7 @@ type Curry<F extends ((...args: any) => any)>
  * log(1)(2, 3, 4); // logged: [1, 2, 3, 4]
  * log(1, 2); // not logged becose original function is not called
  */
-function curry<F extends (...args: any[]) => any>(fn: F, arity: number = fn.length): Curry<F> {
-    // @ts-ignore
+function curry<F extends (...args: any[]) => any>(fn: F, arity: number = fn.length): (...args: any[]) => any {
     return curryNext(fn, [], arity);
 }
 
@@ -97,11 +44,11 @@ function curryNext<F extends (...args: any[]) => any>(
     original: F,
     prevArgs: any[],
     argsCount: number
-): Curry<F> {
+): (...args: any[]) => any {
     if(argsCount <= 0) {
         return original.apply(this, prevArgs);
     }
-    function fn(...args: any[]): Curry<F> {
+    function fn(...args: any[]) {
         const nextArgs = prevArgs.slice();
         let skip = 0;
         nextArgs.forEach((arg, i) => {
@@ -129,7 +76,7 @@ function curryNext<F extends (...args: any[]) => any>(
         // ignore, it fix IE
         // becouse IE can not redefine length property for function
     }
-    return fn as Curry<F>;
+    return fn;
 }
 
 // <test>
