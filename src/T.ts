@@ -8,7 +8,7 @@ import {Predicate} from './types';
  * @example
  * T(); // => true
  */
-const T: Predicate<boolean> = always(true);
+const T: Predicate<[]> = always(true);
 
 export default T;
 

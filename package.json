@@ -7,8 +7,8 @@
   "types": "index.d.ts",
   "scripts": {
     "test": "ava",
-    "coverage": "nyc ava",
-    "coverage:report": "nyc --require ts-node/register report --reporter=html",
+    "coverage": "nyc --require ts-node/register ava",
+    "coverage:report": "nyc report --reporter=html",
     "lint": "tslint -p .",
     "compile": "tsc -p .",
     "clear": "rm -rf ./dist",

@@ -10,7 +10,7 @@ import {Predicate} from '../types';
  * isStartWithThe('A regular expression is a pattern'); // => false
  * isStartWithThe('The end'); // => true
  */
-function regexFilter(regex: RegExp): Predicate<string> {
+function regexFilter(regex: RegExp): Predicate<[string?]> {
     return str => regex.test(str);
 }
 
