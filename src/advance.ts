@@ -5,7 +5,7 @@ function advance<T>(value: T): T {
     if(needWarn) {
         needWarn = false;
         // eslint-disable-next-line no-console
-        console.warn('Function @bingo347/advance was moved to @bingo347/identity and will be removed in next version of library');
+        console.warn('Function @bingo347/fn/advance was moved to @bingo347/fn/identity and will be removed in next version of library');
     }
     return identity(value);
 }
