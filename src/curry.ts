@@ -1,8 +1,111 @@
-import __ from './placeholder';
-type Placeholder = typeof __;
-
-// normal types is crash TS compiler with high order functions
-// need replace types for dist from curry.d.ts
+type Length<T extends any[]> = T['length'];
+type ThisArg<F extends (...args: any[]) => any> = F extends (this: infer T, ...args: any[]) => any ? T : any;
+type Arity<A extends number>
+    = A extends 0 ? 0
+    : A extends 1 ? 1
+    : A extends 2 ? 2
+    : A extends 3 ? 3
+    : A extends 4 ? 4
+    : A extends 5 ? 5
+    : A extends 6 ? 6
+    : A extends 7 ? 7
+    : A extends 8 ? 8
+    : A extends 9 ? 9
+    : 'other';
+type Head<Args extends any[], Count extends number> = {
+    0: [];
+    1: [Args[0]];
+    2: [Args[0], Args[1]];
+    3: [Args[0], Args[1], Args[2]];
+    4: [Args[0], Args[1], Args[2], Args[3]];
+    5: [Args[0], Args[1], Args[2], Args[3], Args[4]];
+    6: [Args[0], Args[1], Args[2], Args[3], Args[4], Args[5]];
+    7: [Args[0], Args[1], Args[2], Args[3], Args[4], Args[5], Args[6]];
+    8: [Args[0], Args[1], Args[2], Args[3], Args[4], Args[5], Args[6], Args[7]];
+    9: [Args[0], Args[1], Args[2], Args[3], Args[4], Args[5], Args[6], Args[7], Args[8]];
+    other: any[];
+}[Arity<Count>];
+type Tail<Args extends any[], Skip extends number> = {
+    0: [];
+    1: ((...args: Args) => void) extends (a0: any, ...args: infer NextArgs) => void ? NextArgs : [];
+    2: ((...args: Args) => void) extends (a0: any, a1: any, ...args: infer NextArgs) => void ? NextArgs : [];
+    3: ((...args: Args) => void) extends (a0: any, a1: any, a2: any, ...args: infer NextArgs) => void ? NextArgs : [];
+    4: ((...args: Args) => void) extends (a0: any, a1: any, a2: any, a3: any, ...args: infer NextArgs) => void ? NextArgs : [];
+    5: ((...args: Args) => void) extends (a0: any, a1: any, a2: any, a3: any, a4: any, ...args: infer NextArgs) => void ? NextArgs : [];
+    6: ((...args: Args) => void) extends (a0: any, a1: any, a2: any, a3: any, a4: any, a5: any, ...args: infer NextArgs) => void ? NextArgs : [];
+    7: ((...args: Args) => void) extends (a0: any, a1: any, a2: any, a3: any, a4: any, a5: any, a6: any, ...args: infer NextArgs) => void ? NextArgs : [];
+    8: ((...args: Args) => void) extends (a0: any, a1: any, a2: any, a3: any, a4: any, a5: any, a6: any, a7: any, ...args: infer NextArgs) => void ? NextArgs : [];
+    9: ((...args: Args) => void) extends (a0: any, a1: any, a2: any, a3: any, a4: any, a5: any, a6: any, a7: any, a8: any, ...args: infer NextArgs) => void ? NextArgs : [];
+    other: any[];
+}[Arity<Skip>];
+type Curry<F extends (...args: any[]) => any, A extends number, This> = {
+    0: ReturnType<F>;
+    1: (this: This, arg: Parameters<F>[0]) => ReturnType<F>;
+    2: {
+        (this: This, ...args: Head<Parameters<F>, 2>): ReturnType<F>;
+        (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 1, This>;
+    };
+    3: {
+        (this: This, ...args: Head<Parameters<F>, 3>): ReturnType<F>;
+        (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 1, This>;
+        (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 2, This>;
+    };
+    4: {
+        (this: This, ...args: Head<Parameters<F>, 4>): ReturnType<F>;
+        (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 1, This>;
+        (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 2, This>;
+        (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 3, This>;
+    };
+    5: {
+        (this: This, ...args: Head<Parameters<F>, 5>): ReturnType<F>;
+        (...args: Head<Parameters<F>, 4>): Curry<(...args: Tail<Parameters<F>, 4>) => ReturnType<F>, 1, This>;
+        (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 2, This>;
+        (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 3, This>;
+        (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 4, This>;
+    };
+    6: {
+        (this: This, ...args: Head<Parameters<F>, 6>): ReturnType<F>;
+        (...args: Head<Parameters<F>, 5>): Curry<(...args: Tail<Parameters<F>, 5>) => ReturnType<F>, 1, This>;
+        (...args: Head<Parameters<F>, 4>): Curry<(...args: Tail<Parameters<F>, 4>) => ReturnType<F>, 2, This>;
+        (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 3, This>;
+        (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 4, This>;
+        (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 5, This>;
+    };
+    7: {
+        (this: This, ...args: Head<Parameters<F>, 7>): ReturnType<F>;
+        (...args: Head<Parameters<F>, 6>): Curry<(...args: Tail<Parameters<F>, 6>) => ReturnType<F>, 1, This>;
+        (...args: Head<Parameters<F>, 5>): Curry<(...args: Tail<Parameters<F>, 5>) => ReturnType<F>, 2, This>;
+        (...args: Head<Parameters<F>, 4>): Curry<(...args: Tail<Parameters<F>, 4>) => ReturnType<F>, 3, This>;
+        (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 4, This>;
+        (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 5, This>;
+        (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 6, This>;
+    };
+    8: {
+        (this: This, ...args: Head<Parameters<F>, 8>): ReturnType<F>;
+        (...args: Head<Parameters<F>, 7>): Curry<(...args: Tail<Parameters<F>, 7>) => ReturnType<F>, 1, This>;
+        (...args: Head<Parameters<F>, 6>): Curry<(...args: Tail<Parameters<F>, 6>) => ReturnType<F>, 2, This>;
+        (...args: Head<Parameters<F>, 5>): Curry<(...args: Tail<Parameters<F>, 5>) => ReturnType<F>, 3, This>;
+        (...args: Head<Parameters<F>, 4>): Curry<(...args: Tail<Parameters<F>, 4>) => ReturnType<F>, 4, This>;
+        (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 5, This>;
+        (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 6, This>;
+        (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 7, This>;
+    };
+    9: {
+        (this: This, ...args: Head<Parameters<F>, 9>): ReturnType<F>;
+        (...args: Head<Parameters<F>, 8>): Curry<(...args: Tail<Parameters<F>, 8>) => ReturnType<F>, 1, This>;
+        (...args: Head<Parameters<F>, 7>): Curry<(...args: Tail<Parameters<F>, 7>) => ReturnType<F>, 2, This>;
+        (...args: Head<Parameters<F>, 6>): Curry<(...args: Tail<Parameters<F>, 6>) => ReturnType<F>, 3, This>;
+        (...args: Head<Parameters<F>, 5>): Curry<(...args: Tail<Parameters<F>, 5>) => ReturnType<F>, 4, This>;
+        (...args: Head<Parameters<F>, 4>): Curry<(...args: Tail<Parameters<F>, 4>) => ReturnType<F>, 5, This>;
+        (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 6, This>;
+        (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 7, This>;
+        (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 8, This>;
+    };
+    other: (...args: any[]) => any;
+}[Arity<A>] & {
+    length: Arity<A>;
+    name: string
+};
 
 /**
  * Wrap given function to a curried variant.
@@ -30,36 +133,26 @@ type Placeholder = typeof __;
  * log(1)(2, 3, 4); // logged: [1, 2, 3, 4]
  * log(1, 2); // not logged becose original function is not called
  */
-function curry<F extends (...args: any[]) => any>(fn: F, arity: number = fn.length): (...args: any[]) => any {
+function curry<
+    F extends (...args: any[]) => any,
+    Arity extends number = Length<Parameters<F>>,
+    This = ThisArg<F>
+>(fn: F, arity: Arity = fn.length as Arity): Curry<F, Arity, This> {
     return curryNext(fn, [], arity);
 }
 
 export default curry;
 
-function isPlaceholder(a: any): a is Placeholder {
-    return a === __;
-}
-
-function curryNext<F extends (...args: any[]) => any>(
+function curryNext<F extends (...args: any[]) => any, Arity extends number, This>(
     original: F,
     prevArgs: any[],
-    argsCount: number
-): (...args: any[]) => any {
+    argsCount: Arity
+): Curry<F, Arity, This> {
     if(argsCount <= 0) {
         return original.apply(this, prevArgs);
     }
     function fn(...args: any[]) {
-        const nextArgs = prevArgs.slice();
-        let skip = 0;
-        nextArgs.forEach((arg, i) => {
-            if(isPlaceholder(arg)) {
-                nextArgs[i] = args[skip];
-                skip++;
-            }
-        });
-        nextArgs.push(...args.slice(skip));
-        const nextArgsCount = argsCount - args.length + nextArgs.filter(isPlaceholder).length;
-        return curryNext.call(this, original, nextArgs, nextArgsCount);
+        return curryNext.call(this, original, prevArgs.concat(args), argsCount - args.length);
     }
     try {
         Object.defineProperties(fn, {
@@ -76,7 +169,7 @@ function curryNext<F extends (...args: any[]) => any>(
         // ignore, it fix IE
         // becouse IE can not redefine length property for function
     }
-    return fn;
+    return fn as Curry<F, Arity, This>;
 }
 
 // <test>
@@ -85,8 +178,7 @@ import test from 'ava';
     if(module.parent.id !== '.') { return; }
     const testAdd2 = curry((a: number, b: number) => a + b);
     const testAdd3 = curry((a: number, b: number, c: number) => a + b + c);
-    const testPlaceholder = curry((a: any, b: any, c: any) => [a, b, c]);
-    const testContext = curry(function testName(...args: any[]) {
+    const testContext = curry(function testName(this: typeof ctx, ...args: any[]) {
         return this;
     }, 3);
     const ctx = {};
@@ -118,11 +210,6 @@ import test from 'ava';
         t.is(1, testAdd3(0)(0).length);
         t.is(1, testAdd3(0, 0).length);
         t.is(3, testContext.length);
-    });
-    test('placeholder support', t => {
-        const placeholdered = testPlaceholder(0, __, 0);
-        t.is(1, placeholdered.length);
-        t.deepEqual([0, 0, 0], placeholdered(0));
     });
     test('properly reports the name of the curried function', t => {
         t.is('testName', testContext.name);
