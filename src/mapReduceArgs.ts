@@ -2,14 +2,6 @@ import curry from './curry';
 import only0 from './only0';
 import {Mapper} from './types';
 
-function mapReduceArgsInternal<V, T, R>(
-    mapper: Mapper<[V], T>,
-    reducer: (...args: T[]) => R
-): (...args: V[]) => R {
-    const normalizedMapper = only0(mapper);
-    return (...args) => reducer(...args.map(normalizedMapper));
-}
-
 /**
  * Map every argument by mapper and reduce all by reducer
  * @param mapper mapper function
@@ -20,9 +12,18 @@ function mapReduceArgsInternal<V, T, R>(
  * const parseFloatAll = mapReduceArgs(a => parseFloat(a), (...args) => args);
  * parseFloatAll('1', '2', '3') // => [1, 2, 3]
  */
-const mapReduceArgs = curry(mapReduceArgsInternal);
+function mapReduceArgs<V, T, R>(
+    mapper: Mapper<[V], T>,
+    reducer: (...args: T[]) => R
+): (...args: V[]) => R {
+    const normalizedMapper = only0(mapper);
+    return (...args) => reducer(...args.map(normalizedMapper));
+}
 
-export default mapReduceArgs;
+export default curry(mapReduceArgs) as {
+    <V, T, R>(mapper: Mapper<[V], T>, reducer: (...args: T[]) => R ): (...args: V[]) => R;
+    <V, T, R>(mapper: Mapper<[V], T>): (reducer: (...args: T[]) => R ) => (...args: V[]) => R;
+};
 
 // <test>
 import test from 'ava';
