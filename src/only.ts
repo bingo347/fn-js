@@ -1,4 +1,4 @@
-import isUndefined from './predicates/isUndefined';
+import curry from './curry';
 
 type Args<I, A>
     = I extends 0 ? [A, ...any[]]
@@ -28,20 +28,16 @@ export type OnlyResult<A, R, I extends number> = (...args: Args<I, A>) => R;
  * only(1, func)(1, 2); // => 2
  * only(3, func)(1, 2); // => undefined
  */
-function only<A, R, I extends number>(argIndex: I): (fn: (arg: A) => R) => OnlyResult<A, R, I>;
-function only<A, R, I extends number>(argIndex: I, fn: (arg: A) => R): OnlyResult<A, R, I>;
-function only<A, R, I extends number>(argIndex: I, fn?: (arg: A) => R) {
-    if(isUndefined(fn)) {
-        return function(fn: (arg: A) => R): OnlyResult<A, R, I> {
-            return only(argIndex, fn);
-        };
-    }
+function only<A, R, I extends number>(argIndex: I, fn: (arg: A) => R): OnlyResult<A, R, I> {
     return function() {
         return fn(arguments[argIndex]);
     };
 }
 
-export default only;
+export default curry(only) as {
+    <A, R, I extends number>(argIndex: I, fn: (arg: A) => R): OnlyResult<A, R, I>;
+    <A, R, I extends number>(argIndex: I): (fn: (arg: A) => R) => OnlyResult<A, R, I>;
+};
 
 // <test>
 import test from 'ava';
