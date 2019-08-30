@@ -54,7 +54,6 @@ type Curry<F extends (...args: any[]) => any, A extends number, This> = {
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 1, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 2, This>;
         length: 3;
-
     };
     4: {
         (this: This, ...args: Head<Parameters<F>, 4>): ReturnType<F>;
@@ -62,7 +61,6 @@ type Curry<F extends (...args: any[]) => any, A extends number, This> = {
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 2, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 3, This>;
         length: 4;
-
     };
     5: {
         (this: This, ...args: Head<Parameters<F>, 5>): ReturnType<F>;
@@ -71,7 +69,6 @@ type Curry<F extends (...args: any[]) => any, A extends number, This> = {
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 3, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 4, This>;
         length: 5;
-
     };
     6: {
         (this: This, ...args: Head<Parameters<F>, 6>): ReturnType<F>;
@@ -81,7 +78,6 @@ type Curry<F extends (...args: any[]) => any, A extends number, This> = {
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 4, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 5, This>;
         length: 6;
-
     };
     7: {
         (this: This, ...args: Head<Parameters<F>, 7>): ReturnType<F>;
@@ -92,7 +88,6 @@ type Curry<F extends (...args: any[]) => any, A extends number, This> = {
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 5, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 6, This>;
         length: 7;
-
     };
     8: {
         (this: This, ...args: Head<Parameters<F>, 8>): ReturnType<F>;
