@@ -40,21 +40,29 @@ type Tail<Args extends any[], Skip extends number> = {
 }[Arity<Skip>];
 type Curry<F extends (...args: any[]) => any, A extends number, This> = {
     0: ReturnType<F>;
-    1: (this: This, arg: Parameters<F>[0]) => ReturnType<F>;
+    1: {
+        (this: This, arg: Parameters<F>[0]): ReturnType<F>;
+        length: 1;
+    }
     2: {
         (this: This, ...args: Head<Parameters<F>, 2>): ReturnType<F>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 1, This>;
+        length: 2;
     };
     3: {
         (this: This, ...args: Head<Parameters<F>, 3>): ReturnType<F>;
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 1, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 2, This>;
+        length: 3;
+
     };
     4: {
         (this: This, ...args: Head<Parameters<F>, 4>): ReturnType<F>;
         (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 1, This>;
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 2, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 3, This>;
+        length: 4;
+
     };
     5: {
         (this: This, ...args: Head<Parameters<F>, 5>): ReturnType<F>;
@@ -62,6 +70,8 @@ type Curry<F extends (...args: any[]) => any, A extends number, This> = {
         (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 2, This>;
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 3, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 4, This>;
+        length: 5;
+
     };
     6: {
         (this: This, ...args: Head<Parameters<F>, 6>): ReturnType<F>;
@@ -70,6 +80,8 @@ type Curry<F extends (...args: any[]) => any, A extends number, This> = {
         (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 3, This>;
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 4, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 5, This>;
+        length: 6;
+
     };
     7: {
         (this: This, ...args: Head<Parameters<F>, 7>): ReturnType<F>;
@@ -79,6 +91,8 @@ type Curry<F extends (...args: any[]) => any, A extends number, This> = {
         (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 4, This>;
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 5, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 6, This>;
+        length: 7;
+
     };
     8: {
         (this: This, ...args: Head<Parameters<F>, 8>): ReturnType<F>;
@@ -89,6 +103,7 @@ type Curry<F extends (...args: any[]) => any, A extends number, This> = {
         (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 5, This>;
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 6, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 7, This>;
+        length: 8;
     };
     9: {
         (this: This, ...args: Head<Parameters<F>, 9>): ReturnType<F>;
@@ -100,12 +115,10 @@ type Curry<F extends (...args: any[]) => any, A extends number, This> = {
         (...args: Head<Parameters<F>, 3>): Curry<(...args: Tail<Parameters<F>, 3>) => ReturnType<F>, 6, This>;
         (...args: Head<Parameters<F>, 2>): Curry<(...args: Tail<Parameters<F>, 2>) => ReturnType<F>, 7, This>;
         (...args: Head<Parameters<F>, 1>): Curry<(...args: Tail<Parameters<F>, 1>) => ReturnType<F>, 8, This>;
+        length: 9;
     };
     other: (...args: any[]) => any;
-}[Arity<A>] & {
-    length: Arity<A>;
-    name: string
-};
+}[Arity<A>];
 
 /**
  * Wrap given function to a curried variant.
