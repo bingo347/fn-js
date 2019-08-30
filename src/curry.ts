@@ -26,7 +26,7 @@ type Head<Args extends any[], Count extends number> = {
     other: any[];
 }[Arity<Count>];
 type Tail<Args extends any[], Skip extends number> = {
-    0: [];
+    0: Args;
     1: ((...args: Args) => void) extends (a0: any, ...args: infer NextArgs) => void ? NextArgs : [];
     2: ((...args: Args) => void) extends (a0: any, a1: any, ...args: infer NextArgs) => void ? NextArgs : [];
     3: ((...args: Args) => void) extends (a0: any, a1: any, a2: any, ...args: infer NextArgs) => void ? NextArgs : [];
