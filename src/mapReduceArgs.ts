@@ -21,8 +21,8 @@ function mapReduceArgs<V, T, R>(
 }
 
 export default curry(mapReduceArgs) as {
-    <V, T, R>(mapper: Mapper<[V], T>, reducer: (...args: T[]) => R ): (...args: V[]) => R;
-    <V, T, R>(mapper: Mapper<[V], T>): (reducer: (...args: T[]) => R ) => (...args: V[]) => R;
+    <V, T, R>(mapper: Mapper<[V], T>, reducer: (...args: T[]) => R): (...args: V[]) => R;
+    <V, T, R>(mapper: Mapper<[V], T>): (reducer: (...args: T[]) => R) => (...args: V[]) => R;
 };
 
 // <test>
