@@ -10,7 +10,7 @@ import typeFilter from '../filters/typeFilter';
  * isNumber('123'); // => false
  * isNumber(new Number()); // => false
  */
-const isNumber = typeFilter('number') as (value: any) => value is number;
+const isNumber = typeFilter('number');
 
 export default isNumber;
 

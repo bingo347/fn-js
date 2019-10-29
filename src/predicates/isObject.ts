@@ -11,7 +11,7 @@ import typeFilter from '../filters/typeFilter';
  * isObject(123); // => false
  * isObject(() => {}); // => false
  */
-const isObject = typeFilter('object') as (value: any) => value is object;
+const isObject = typeFilter('object');
 
 export default isObject;
 

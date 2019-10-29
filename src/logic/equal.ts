@@ -1,4 +1,3 @@
-import {Predicate} from '../types';
 import curry from '../curry';
 
 /**
@@ -16,7 +15,10 @@ function equal<T1, T2>(a: T1, b: T2): boolean {
     return (a as any) === (b as any);
 }
 
-export default curry(equal);
+export default curry(equal) as {
+    <T1, T2>(a: T1, b: T2): boolean;
+    <T1, T2>(a: T1): (b: T2) => boolean;
+};
 
 // <test>
 import test from 'ava';

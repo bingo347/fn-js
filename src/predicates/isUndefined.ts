@@ -12,7 +12,7 @@ import typeFilter from '../filters/typeFilter';
  * let b;
  * isUndefined(b); // => true
  */
-const isUndefined = typeFilter('undefined') as (value: any) => value is undefined;
+const isUndefined = typeFilter('undefined');
 
 export default isUndefined;
 

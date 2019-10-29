@@ -9,7 +9,7 @@ import typeFilter from '../filters/typeFilter';
  * isSymbol(Symbol()); // => true
  * isSymbol(''); // => false
  */
-const isSymbol = typeFilter('symbol') as (value: any) => value is symbol;
+const isSymbol = typeFilter('symbol');
 
 export default isSymbol;
 

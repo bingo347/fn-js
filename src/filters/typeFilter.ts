@@ -1,14 +1,24 @@
-import {Predicate} from '../types';
 import equal from '../logic/equal';
+
+type TypeMap = {
+    string: string;
+    number: number
+    bigint: bigint
+    boolean: boolean
+    symbol: symbol
+    undefined: undefined
+    object: object
+    function: (...args: any[]) => any
+};
 
 /**
  * make typeof Predicate
  * @param type type name
  * @return typeof Predicate
  */
-function typeFilter(type: string): Predicate<any> {
-    const typeEqual = equal(type);
-    return value => typeEqual(typeof value);
+function typeFilter<T extends keyof TypeMap>(type: T) {
+    const typeEqual = equal<T, T>(type);
+    return (value: any): value is TypeMap[T] => typeEqual(typeof value as T);
 }
 
 export default typeFilter;

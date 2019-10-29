@@ -10,7 +10,7 @@ import typeFilter from '../filters/typeFilter';
  * isString(123); // => false
  * isString(new String()); // => false
  */
-const isString = typeFilter('string') as (value: any) => value is string;
+const isString = typeFilter('string');
 
 export default isString;
 
